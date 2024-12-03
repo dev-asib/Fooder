@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fooder/core/widgets/stock_badge.dart';
 import 'package:fooder/core/widgets/wish_icon.dart';
 import 'package:fooder/core/widgets/food.dart';
 import 'package:gap/gap.dart';
@@ -10,14 +11,14 @@ class FoodPromo extends StatelessWidget {
     this.foodDetails = "Delics Fruit Salad Ngasem",
     this.originalPrice = 500,
     this.discountPrice = 400,
-    this.left = 5,
+    this.stockCount = 5,
   });
 
   final String foodTitle;
   final String foodDetails;
   final double originalPrice;
   final double discountPrice;
-  final int left;
+  final int stockCount;
 
   @override
   Widget build(BuildContext context) {
@@ -73,21 +74,7 @@ class FoodPromo extends StatelessWidget {
                 ),
               ),
               const Spacer(),
-              Container(
-                height: 35,
-                width: 60,
-                decoration: BoxDecoration(
-                  color: const Color(0xFFEDA345),
-                  borderRadius: BorderRadius.circular(4),
-                ),
-                alignment: Alignment.center,
-                child: Text(
-                  "$left Left",
-                  style: const TextStyle(
-                    color: Color(0xFFFFFFFF),
-                  ),
-                ),
-              ),
+              StockBadge(stockCount: stockCount),
             ],
           )
         ],
@@ -95,3 +82,4 @@ class FoodPromo extends StatelessWidget {
     );
   }
 }
+
