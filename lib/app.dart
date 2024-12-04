@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fooder/core/theme/app_colors/app_colors.dart';
-import 'package:fooder/features/home/presentations/screens/home_screen.dart';
+import 'package:fooder/features/main_bottom_nav/presentation/screens/main_bottom_nav_screen.dart';
 
 class Fooder extends StatelessWidget {
   const Fooder({super.key});
@@ -8,8 +8,9 @@ class Fooder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const HomeScreen(),
+      home: const MainBottomNavScreen(),
       theme: ThemeData(
+        useMaterial3: true,
         iconButtonTheme: IconButtonThemeData(
           style: IconButton.styleFrom(
             backgroundColor: AppColors.kWhiteColor,
@@ -37,7 +38,18 @@ class Fooder extends StatelessWidget {
           ),
           titleMedium: TextStyle(
             fontWeight: FontWeight.bold,
+            fontSize: 17,
+            color: AppColors.kBlackColor
+          ),
+          titleSmall: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+              color: AppColors.kMediumGreyColor,
+          ),
+          bodySmall: TextStyle(
+            fontWeight: FontWeight.bold,
             fontSize: 16,
+            color: AppColors.kWhiteColor,
           ),
         ),
       ),

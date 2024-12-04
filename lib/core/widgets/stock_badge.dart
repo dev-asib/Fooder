@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fooder/core/theme/app_colors/app_colors.dart';
 
 class StockBadge extends StatelessWidget {
   const StockBadge({
@@ -10,19 +11,24 @@ class StockBadge extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
+
     return Container(
       height: 35,
       width: 60,
       decoration: BoxDecoration(
         color: const Color(0xFFEDA345),
+        border: Border.all(
+          color: AppColors.kWhiteColor,
+          strokeAlign: BorderSide.strokeAlignOutside,
+          width: 3.5,
+        ),
         borderRadius: BorderRadius.circular(4),
       ),
       alignment: Alignment.center,
       child: Text(
         "$stockCount Left",
-        style: const TextStyle(
-          color: Color(0xFFFFFFFF),
-        ),
+        style: textTheme.bodySmall,
       ),
     );
   }

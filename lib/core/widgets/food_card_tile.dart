@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fooder/core/constants/assets_paths/assets_paths.dart';
 import 'package:fooder/core/theme/app_colors/app_colors.dart';
-import 'package:fooder/core/widgets/custom_icon_button.dart';
+import 'package:fooder/core/widgets/increment_decrement_button.dart';
 import 'package:fooder/core/widgets/food.dart';
 import 'package:fooder/core/widgets/stock_badge.dart';
 import 'package:fooder/core/widgets/wish_icon.dart';
@@ -27,7 +27,7 @@ class FoodCardTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final textTheme = Theme.of(context).textTheme;
+    final TextTheme textTheme = Theme.of(context).textTheme;
     return Card(
       child: Column(
         children: [
@@ -37,13 +37,15 @@ class FoodCardTile extends StatelessWidget {
             children: [
               _buildFoodImageSection(),
               const Gap(16),
-              _buildFoodInfoSection(textTheme),
+              Expanded(
+                child: _buildFoodInfoSection(textTheme),
+              ),
             ],
           ),
           Row(
             children: [
               _buildFoodIncrementDecrementSection(
-                context: context,
+                textTheme: textTheme,
                 totalFoodCount: totalFoodCount,
               ),
               const Spacer(),
@@ -151,7 +153,7 @@ class FoodCardTile extends StatelessWidget {
 }
 
 Widget _buildFoodIncrementDecrementSection({
-  required BuildContext context,
+  required TextTheme textTheme,
   required int totalFoodCount,
 }) {
   return SizedBox(
@@ -168,7 +170,7 @@ Widget _buildFoodIncrementDecrementSection({
             padding: const EdgeInsets.all(12),
             child: Text(
               "$totalFoodCount",
-              style: Theme.of(context).textTheme.titleLarge,
+              style: textTheme.titleLarge,
             ),
           ),
           IncrementDecrementButton(

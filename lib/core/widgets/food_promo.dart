@@ -22,6 +22,7 @@ class FoodPromo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final TextTheme textTheme = Theme.of(context).textTheme;
     return Food(
       height: 280,
       width: 300,
@@ -37,7 +38,7 @@ class FoodPromo extends StatelessWidget {
             left: 8,
             right: 8,
             child: Card(
-              child: _buildPromoFoodInfoCard(),
+              child: _buildPromoFoodInfoCard(textTheme),
             ),
           ),
         ],
@@ -45,7 +46,7 @@ class FoodPromo extends StatelessWidget {
     );
   }
 
-  Widget _buildPromoFoodInfoCard() {
+  Widget _buildPromoFoodInfoCard(TextTheme textTheme) {
     return Container(
       height: 100,
       padding: const EdgeInsets.all(8),
@@ -57,6 +58,7 @@ class FoodPromo extends StatelessWidget {
             foodTitle,
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
+            style: textTheme.titleMedium,
           ),
           Text(
             foodDetails,
