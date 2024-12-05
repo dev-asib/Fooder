@@ -8,12 +8,8 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => MainBottomNavProvider(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => HomeProvider(),
-        ),
+        ChangeNotifierProvider(create: (_) => MainBottomNavProvider()),
+        ChangeNotifierProvider(create: (_) => HomeProvider()),
       ],
       child: const Fooder(),
     ),

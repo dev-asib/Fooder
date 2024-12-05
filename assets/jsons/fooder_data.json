@@ -1,0 +1,232 @@
+[
+  {
+    "id": 1,
+    "foodTitle": "Fruit Salad Mix",
+    "foodDetails": "A healthy mix of fresh fruits",
+    "originalPrice": 500.0,
+    "discountPrice": 400.0,
+    "stockCount": 5,
+    "imgPath": "assets/images/fruit_salad_mix.png",
+    "total_reviews": 120,
+    "reviews": [
+      {
+        "user": "John Doe",
+        "rating": 4.5,
+        "comment": "Fresh and tasty! Loved it."
+      },
+      {
+        "user": "Jane Smith",
+        "rating": 4.0,
+        "comment": "Good quality but a bit pricey."
+      }
+    ],
+    "isFavorite": true
+  },
+  {
+    "id": 2,
+    "foodTitle": "Grilled Chicken",
+    "foodDetails": "Juicy grilled chicken with spices",
+    "originalPrice": 600.0,
+    "discountPrice": 450.0,
+    "stockCount": 10,
+    "imgPath": "assets/images/grilled_chicken.png",
+    "total_reviews": 85,
+    "reviews": [
+      {
+        "user": "Mike Johnson",
+        "rating": 5.0,
+        "comment": "Perfectly cooked and seasoned!"
+      },
+      {
+        "user": "Emily Davis",
+        "rating": 4.2,
+        "comment": "Really good but portion size is small."
+      }
+    ],
+    "isFavorite": false
+  },
+  {
+    "id": 3,
+    "foodTitle": "Veggie Pizza",
+    "foodDetails": "Delicious pizza topped with fresh veggies",
+    "originalPrice": 800.0,
+    "discountPrice": 700.0,
+    "stockCount": 3,
+    "imgPath": "assets/images/veggie_pizza.png",
+    "total_reviews": 200,
+    "reviews": [
+      {
+        "user": "Chris Lee",
+        "rating": 4.8,
+        "comment": "One of the best pizzas I've ever had!"
+      },
+      {
+        "user": "Sophia Brown",
+        "rating": 4.5,
+        "comment": "Great taste and fresh ingredients."
+      }
+    ],
+    "isFavorite": true
+  },
+  {
+    "id": 4,
+    "foodTitle": "Chocolate Cake",
+    "foodDetails": "Rich and moist chocolate cake slice",
+    "originalPrice": 300.0,
+    "discountPrice": 250.0,
+    "stockCount": 8,
+    "imgPath": "assets/images/chocolate_cake.png",
+    "total_reviews": 150,
+    "reviews": [
+      {
+        "user": "Liam Wilson",
+        "rating": 4.9,
+        "comment": "Absolutely delicious! Will order again."
+      },
+      {
+        "user": "Olivia Martinez",
+        "rating": 4.7,
+        "comment": "Great taste but could be a little bigger."
+      }
+    ],
+    "isFavorite": false
+  },
+  {
+    "id": 5,
+    "foodTitle": "Spaghetti Bolognese",
+    "foodDetails": "Classic Italian pasta with meat sauce",
+    "originalPrice": 700.0,
+    "discountPrice": 600.0,
+    "stockCount": 15,
+    "imgPath": "assets/images/spaghetti_bolognese.png",
+    "total_reviews": 250,
+    "reviews": [
+      {
+        "user": "Nathan Young",
+        "rating": 4.6,
+        "comment": "Tastes just like homemade!"
+      },
+      {
+        "user": "Grace Lee",
+        "rating": 4.3,
+        "comment": "Good flavor but could use more sauce."
+      }
+    ],
+    "isFavorite": true
+  },
+  {
+    "id": 6,
+    "foodTitle": "Beef Burger",
+    "foodDetails": "Juicy beef burger with fresh toppings",
+    "originalPrice": 500.0,
+    "discountPrice": 450.0,
+    "stockCount": 20,
+    "imgPath": "assets/images/beef_burger.png",
+    "total_reviews": 180,
+    "reviews": [
+      {
+        "user": "Oliver King",
+        "rating": 4.9,
+        "comment": "One of the best burgers I've had!"
+      },
+      {
+        "user": "Sophia Johnson",
+        "rating": 4.5,
+        "comment": "Great value for the price."
+      }
+    ],
+    "isFavorite": false
+  },
+  {
+    "id": 7,
+    "foodTitle": "Caesar Salad",
+    "foodDetails": "Fresh romaine lettuce with Caesar dressing",
+    "originalPrice": 350.0,
+    "discountPrice": 300.0,
+    "stockCount": 12,
+    "imgPath": "assets/images/caesar_salad.png",
+    "total_reviews": 90,
+    "reviews": [
+      {
+        "user": "Ethan Carter",
+        "rating": 4.7,
+        "comment": "Crisp and delicious, perfect for lunch."
+      },
+      {
+        "user": "Amelia Parker",
+        "rating": 4.4,
+        "comment": "Good but could use more dressing."
+      }
+    ],
+    "isFavorite": true
+  },
+  {
+    "id": 8,
+    "foodTitle": "Mango Smoothie",
+    "foodDetails": "Refreshing mango smoothie made with fresh mangoes",
+    "originalPrice": 200.0,
+    "discountPrice": 180.0,
+    "stockCount": 25,
+    "imgPath": "assets/images/mango_smoothie.png",
+    "total_reviews": 300,
+    "reviews": [
+      {
+        "user": "Liam Smith",
+        "rating": 4.8,
+        "comment": "Perfect balance of sweetness and creaminess."
+      },
+      {
+        "user": "Isabella Johnson",
+        "rating": 4.6,
+        "comment": "Loved it, would definitely buy again!"
+      }
+    ],
+    "isFavorite": true
+  },
+  {
+    "id": 9,
+    "foodTitle": "Grilled Salmon",
+    "foodDetails": "Fresh salmon grilled to perfection",
+    "originalPrice": 1200.0,
+    "discountPrice": 1000.0,
+    "stockCount": 6,
+    "imgPath": "assets/images/grilled_salmon.png",
+    "total_reviews": 70,
+    "reviews": [
+      {
+        "user": "James Williams",
+        "rating": 4.9,
+        "comment": "Perfectly grilled and flavorful!"
+      },
+      {
+        "user": "Charlotte Brown",
+        "rating": 4.7,
+        "comment": "A bit pricey but worth it."
+      }
+    ],
+    "isFavorite": false
+  },
+  {
+    "id": 10,
+    "foodTitle": "Chicken Tikka",
+    "foodDetails": "Spicy and flavorful Indian-style chicken",
+    "originalPrice": 800.0,
+    "discountPrice": 750.0,
+    "stockCount": 18,
+    "imgPath": "assets/images/chicken_tikka.png",
+    "total_reviews": 95,
+    "reviews": [
+      {
+        "user": "Alexander Harris",
+        "rating": 4.8,
+        "comment": "Authentic taste and great spice level."
+      },
+      {
+        "user": "Mia Clark",
+        "rating": 4.6,
+        "comment": "Really enjoyed it with naan bread."
+      }
+    ],
+    "isFavorite": true
+  }
+]

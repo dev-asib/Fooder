@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:fooder/core/constants/assets_paths/assets_paths.dart';
+import 'package:fooder/core/theme/app_colors/app_colors.dart';
 
 class Food extends StatelessWidget {
   const Food({
     super.key,
-    this.imgPath = AssetsPaths.food,
+    required this.imgPath,
     this.width = 180,
     this.height = 100,
     this.radius = 8,
@@ -19,17 +19,20 @@ class Food extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: height,
-      width: width,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(radius),
-        image: DecorationImage(
-          image: AssetImage(imgPath),
-          fit: BoxFit.fill,
+    return Card(
+      color: AppColors.kWhiteColor,
+      child: Container(
+        height: height,
+        width: width,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(radius),
+          image: DecorationImage(
+            image: AssetImage(imgPath),
+            fit: BoxFit.fill,
+          ),
         ),
+        child: widget,
       ),
-      child: widget,
     );
   }
 }

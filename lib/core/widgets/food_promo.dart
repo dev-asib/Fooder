@@ -1,24 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:fooder/core/constants/assets_paths/images_paths.dart';
 import 'package:fooder/core/widgets/stock_badge.dart';
 import 'package:fooder/core/widgets/wish_icon.dart';
 import 'package:fooder/core/widgets/food.dart';
+import 'package:fooder/features/home/data/models/fooder_model.dart';
 import 'package:gap/gap.dart';
 
 class FoodPromo extends StatelessWidget {
   const FoodPromo({
     super.key,
-    this.foodTitle = "Fruit Salad Mix",
-    this.foodDetails = "Delics Fruit Salad Ngasem",
-    this.originalPrice = 500,
-    this.discountPrice = 400,
-    this.stockCount = 5,
+    required this.fooder,
   });
 
-  final String foodTitle;
-  final String foodDetails;
-  final double originalPrice;
-  final double discountPrice;
-  final int stockCount;
+  final FooderModel fooder;
 
   @override
   Widget build(BuildContext context) {
@@ -26,6 +20,7 @@ class FoodPromo extends StatelessWidget {
     return Food(
       height: 280,
       width: 300,
+      imgPath: fooder.imgPath ?? ImagesPaths.kFood,
       widget: Stack(
         alignment: Alignment.topRight,
         children: [
@@ -48,35 +43,35 @@ class FoodPromo extends StatelessWidget {
 
   Widget _buildPromoFoodInfoCard(TextTheme textTheme) {
     return Container(
-      height: 100,
+      height: 110,
       padding: const EdgeInsets.all(8),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Text(
-            foodTitle,
+            fooder.foodTitle ?? 'Unknown Title',
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
             style: textTheme.titleMedium,
           ),
           Text(
-            foodDetails,
+            fooder.foodDetails ?? 'Unknown Details',
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
           ),
           Row(
             children: [
-              Text("TK: $discountPrice"),
+              Text("TK: ${fooder.discountPrice ?? '0'}"),
               const Gap(8),
               Text(
-                "$originalPrice",
+                "${fooder.originalPrice ?? '0'}",
                 style: const TextStyle(
                   decoration: TextDecoration.lineThrough,
                 ),
               ),
               const Spacer(),
-              StockBadge(stockCount: stockCount),
+              StockBadge(stockCount: fooder.stockCount ?? 0),
             ],
           )
         ],
@@ -84,4 +79,3 @@ class FoodPromo extends StatelessWidget {
     );
   }
 }
-

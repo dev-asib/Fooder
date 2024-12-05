@@ -34,11 +34,11 @@ class Fooder extends StatelessWidget {
         textTheme: const TextTheme(
           titleLarge: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 20,
+            fontSize: 38,
           ),
           titleMedium: TextStyle(
             fontWeight: FontWeight.bold,
-            fontSize: 17,
+            fontSize: 20,
             color: AppColors.kBlackColor
           ),
           titleSmall: TextStyle(

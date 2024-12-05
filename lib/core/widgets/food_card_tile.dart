@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooder/core/constants/assets_paths/assets_paths.dart';
+import 'package:fooder/core/constants/assets_paths/images_paths.dart';
 import 'package:fooder/core/theme/app_colors/app_colors.dart';
 import 'package:fooder/core/widgets/increment_decrement_button.dart';
 import 'package:fooder/core/widgets/food.dart';
@@ -61,7 +61,7 @@ class FoodCardTile extends StatelessWidget {
     return Food(
       height: 120,
       width: 145,
-      imgPath: AssetsPaths.food,
+      imgPath: ImagesPaths.kFood,
       widget: Stack(
         alignment: Alignment.topRight,
         children: [
