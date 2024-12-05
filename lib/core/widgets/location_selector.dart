@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:fooder/core/theme/app_colors/app_colors.dart';
-import 'package:fooder/features/home/providers/home_provider.dart';
+import 'package:fooder/features/common/providers/fooder_provider.dart';
 
 class LocationSelector extends StatelessWidget {
   const LocationSelector({
@@ -8,7 +8,7 @@ class LocationSelector extends StatelessWidget {
     required this.homeProvider,
   });
 
-  final HomeProvider homeProvider;
+  final FooderProvider homeProvider;
 
   @override
   Widget build(BuildContext context) {

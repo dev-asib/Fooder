@@ -5,26 +5,19 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     super.key,
     required this.title,
     this.actionWidgets,
-    this.fontFamily,
-    this.fontColor,
+    this.leadingWidget,
   });
 
   final String title;
   final List<Widget>? actionWidgets;
-  final String? fontFamily;
-  final Color? fontColor;
+  final Widget? leadingWidget;
 
   @override
   Widget build(BuildContext context) {
-    final TextTheme textTheme = Theme.of(context).textTheme;
     return AppBar(
-      title: Text(
-        title,
-        style: textTheme.titleLarge?.copyWith(
-          fontFamily: fontFamily,
-          color: fontColor,
-        ),
-      ),
+      leadingWidth: 72,
+      leading: leadingWidget,
+      title: Text(title),
       centerTitle: true,
       actions: actionWidgets,
     );

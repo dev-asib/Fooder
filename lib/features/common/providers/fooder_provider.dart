@@ -2,9 +2,9 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fooder/core/constants/assets_paths/jsons_paths.dart';
-import 'package:fooder/features/home/data/models/fooder_model.dart';
+import 'package:fooder/core/data/models/fooder_model.dart';
 
-class HomeProvider extends ChangeNotifier {
+class FooderProvider extends ChangeNotifier {
   final List<String> _locations = [
     "JI. Jayakatwang no 301",
     "JI. Jayakatwang no 302",

@@ -16,32 +16,30 @@ class FoodCategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
 
-    return Expanded(
-      child: Column(
-        children: [
-          Card(
-            color: AppColors.kWhiteColor,
-            shadowColor: AppColors.kFadedPinkColor,
-            elevation: 3,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(4),
-            ),
-            child: Container(
-                height: 85,
-                width: 85,
-                padding: const EdgeInsets.all(24),
-                child: SvgViewer(svgAsset: iconPath)),
+    return Column(
+      children: [
+        Card(
+          color: AppColors.kWhiteColor,
+          shadowColor: AppColors.kFadedPinkColor,
+          elevation: 3,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(4),
           ),
-          Text(
-            overflow: TextOverflow.ellipsis,
-            maxLines: 1,
-            categoryTitle,
-            style: textTheme.titleSmall?.copyWith(
-              fontSize: 18
-            ),
+          child: Container(
+              height: 85,
+              width: 85,
+              padding: const EdgeInsets.all(24),
+              child: SvgViewer(svgAsset: iconPath)),
+        ),
+        Text(
+          overflow: TextOverflow.ellipsis,
+          maxLines: 1,
+          categoryTitle,
+          style: textTheme.titleSmall?.copyWith(
+            fontSize: 18
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

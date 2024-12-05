@@ -1,4 +1,5 @@
-import 'package:fooder/features/home/data/models/reviews_model.dart';
+
+import 'package:fooder/core/data/models/reviews_model.dart';
 
 class FooderModel {
   int? id;

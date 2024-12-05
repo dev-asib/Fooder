@@ -1,5 +1,5 @@
 import 'package:fooder/core/constants/assets_paths/icons_paths.dart';
-import 'package:fooder/features/home/data/models/category.dart';
+import 'package:fooder/core/data/entities/category.dart';
 
 class HomeCategories {
   static List<Category> categories = [

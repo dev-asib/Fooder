@@ -11,9 +11,20 @@ class Fooder extends StatelessWidget {
       home: const MainBottomNavScreen(),
       theme: ThemeData(
         useMaterial3: true,
+        scaffoldBackgroundColor: AppColors.kScaffoldBgColor,
+        appBarTheme: const AppBarTheme(
+          backgroundColor: AppColors.kDarkCharcoalColor,
+          foregroundColor: AppColors.kPrimaryColor,
+          titleTextStyle: TextStyle(
+            color: AppColors.kPrimaryColor,
+            fontSize: 28,
+            fontFamily: "BlackOpsOne",
+          ),
+          surfaceTintColor: AppColors.kDarkCharcoalColor,
+        ),
         iconButtonTheme: IconButtonThemeData(
           style: IconButton.styleFrom(
-            backgroundColor: AppColors.kWhiteColor,
+            backgroundColor: AppColors.kFadedPinkColor,
             foregroundColor: AppColors.kPrimaryColor,
           ),
         ),
@@ -31,25 +42,37 @@ class Fooder extends StatelessWidget {
             ),
           ),
         ),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            backgroundColor: Colors.transparent,
+            foregroundColor: AppColors.kPrimaryColor,
+            textStyle: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),
+          ),
+        ),
         textTheme: const TextTheme(
           titleLarge: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 38,
           ),
           titleMedium: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            color: AppColors.kBlackColor
-          ),
-          titleSmall: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 16,
-              color: AppColors.kMediumGreyColor,
+              fontSize: 20,
+              color: AppColors.kBlackColor),
+          titleSmall: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 16,
+            color: AppColors.kMediumGreyColor,
           ),
           bodySmall: TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 16,
             color: AppColors.kWhiteColor,
+          ),
+          bodyLarge: TextStyle(
+            fontWeight: FontWeight.bold,
           ),
         ),
       ),

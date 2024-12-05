@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooder/core/constants/assets_paths/images_paths.dart';
+import 'package:fooder/core/data/models/fooder_model.dart';
 import 'package:fooder/core/theme/app_colors/app_colors.dart';
 import 'package:fooder/core/widgets/increment_decrement_button.dart';
 import 'package:fooder/core/widgets/food.dart';
@@ -10,25 +10,16 @@ import 'package:gap/gap.dart';
 class FoodCardTile extends StatelessWidget {
   const FoodCardTile({
     super.key,
-    required this.titleText,
-    required this.descriptionText,
-    required this.originalPrice,
-    required this.discountPrice,
-    required this.stockCount,
-    required this.totalFoodCount,
+    required this.fooder,
   });
 
-  final String titleText;
-  final String descriptionText;
-  final double originalPrice;
-  final double discountPrice;
-  final int stockCount;
-  final int totalFoodCount;
+  final FooderModel fooder;
 
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return Card(
+      color: AppColors.kWhiteColor,
       child: Column(
         children: [
           Row(
@@ -46,7 +37,7 @@ class FoodCardTile extends StatelessWidget {
             children: [
               _buildFoodIncrementDecrementSection(
                 textTheme: textTheme,
-                totalFoodCount: totalFoodCount,
+                totalFoodCount: 1,
               ),
               const Spacer(),
               _buildFoodAddButton(),
@@ -61,7 +52,7 @@ class FoodCardTile extends StatelessWidget {
     return Food(
       height: 120,
       width: 145,
-      imgPath: ImagesPaths.kFood,
+      imgPath: fooder.imgPath!,
       widget: Stack(
         alignment: Alignment.topRight,
         children: [
@@ -74,7 +65,7 @@ class FoodCardTile extends StatelessWidget {
             padding: const EdgeInsets.only(bottom: 8.0),
             child: Align(
               alignment: Alignment.bottomCenter,
-              child: StockBadge(stockCount: stockCount),
+              child: StockBadge(stockCount: fooder.stockCount ?? 0),
             ),
           ),
         ],
@@ -90,33 +81,32 @@ class FoodCardTile extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Text(
-            titleText,
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
-            style: textTheme.titleLarge,
-          ),
-          Text(
-            descriptionText,
+            fooder.foodTitle!,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: textTheme.titleMedium,
           ),
-          Row(
-            children: [
-              Text(
-                "TK $discountPrice",
-                style: textTheme.titleMedium,
-              ),
-              const Gap(8),
-              Text(
-                "$originalPrice",
-                style: textTheme.titleMedium?.copyWith(
-                  decoration: TextDecoration.lineThrough,
-                  color: AppColors.kGreyColor,
-                ),
-              ),
-            ],
+          Text(
+            fooder.foodDetails!,
+            maxLines: 1,
+            overflow: TextOverflow.ellipsis,
+            style: textTheme.bodyLarge,
           ),
+
+          RichText(
+            text: TextSpan(
+              style: textTheme.bodyLarge,
+              children: [
+                TextSpan(text: "TK ${fooder.discountPrice ?? 0}\t\t"),
+                TextSpan(
+                    style: textTheme.titleSmall?.copyWith(
+                      decoration: TextDecoration.lineThrough,
+                    ),
+                    text: "${fooder.originalPrice ?? 0}"),
+              ],
+            ),
+          ),
+
           Row(
             children: [
               Container(
@@ -134,7 +124,7 @@ class FoodCardTile extends StatelessWidget {
               const Gap(8),
               Text(
                 "Free Delivery",
-                style: textTheme.titleMedium,
+                style: textTheme.bodyLarge,
               ),
             ],
           ),
@@ -170,7 +160,7 @@ Widget _buildFoodIncrementDecrementSection({
             padding: const EdgeInsets.all(12),
             child: Text(
               "$totalFoodCount",
-              style: textTheme.titleLarge,
+              style: textTheme.titleMedium,
             ),
           ),
           IncrementDecrementButton(

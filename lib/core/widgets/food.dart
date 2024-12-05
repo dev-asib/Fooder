@@ -19,20 +19,17 @@ class Food extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      color: AppColors.kWhiteColor,
-      child: Container(
-        height: height,
-        width: width,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(radius),
-          image: DecorationImage(
-            image: AssetImage(imgPath),
-            fit: BoxFit.fill,
-          ),
+    return Container(
+      height: height,
+      width: width,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(radius),
+        image: DecorationImage(
+          image: AssetImage(imgPath),
+          fit: BoxFit.fill,
         ),
-        child: widget,
       ),
+      child: widget,
     );
   }
 }
