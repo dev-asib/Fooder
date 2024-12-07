@@ -1,0 +1,32 @@
+[
+  {
+    "address": "JI. Jayakatwang no 301",
+    "distance": "1km",
+    "isVerified": true,
+    "openTime": "8:00 AM - 8:00 PM"
+  },
+  {
+    "address": "JI. Jayakatwang no 302",
+    "distance": "2km",
+    "isVerified": false,
+    "openTime": "9:00 AM - 9:00 PM"
+  },
+  {
+    "address": "JI. Jayakatwang no 303",
+    "distance": "3km",
+    "isVerified": true,
+    "openTime": "7:30 AM - 7:30 PM"
+  },
+  {
+    "address": "JI. Jayakatwang no 304",
+    "distance": "1.5km",
+    "isVerified": true,
+    "openTime": "10:00 AM - 10:00 PM"
+  },
+  {
+    "address": "JI. Jayakatwang no 305",
+    "distance": "4km",
+    "isVerified": false,
+    "openTime": "6:00 AM - 6:00 PM"
+  }
+]

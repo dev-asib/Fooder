@@ -75,6 +75,18 @@ class Fooder extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
+        tabBarTheme:  TabBarTheme(
+          indicator: const BoxDecoration(
+            color: AppColors.kPrimaryColor,
+          ),
+          labelColor: AppColors.kWhiteColor,
+          indicatorSize: TabBarIndicatorSize.tab,
+          unselectedLabelColor: AppColors.kPrimaryColor,
+          overlayColor: WidgetStatePropertyAll(Colors.red.shade100),
+        ),
+        chipTheme: const ChipThemeData(
+          backgroundColor: AppColors.kWhiteColor,
+        ),
       ),
     );
   }

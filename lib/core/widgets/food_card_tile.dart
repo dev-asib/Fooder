@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:fooder/core/data/models/fooder_model.dart';
 import 'package:fooder/core/theme/app_colors/app_colors.dart';
-import 'package:fooder/core/widgets/increment_decrement_button.dart';
+import 'package:fooder/core/widgets/dual_rich_text.dart';
+import 'package:fooder/core/widgets/horizontal_icon_with_text.dart';
 import 'package:fooder/core/widgets/food.dart';
 import 'package:fooder/core/widgets/stock_badge.dart';
 import 'package:fooder/core/widgets/wish_icon.dart';
+import 'package:fooder/features/common/widgets/food_increment_decrement_section.dart';
 import 'package:gap/gap.dart';
 
 class FoodCardTile extends StatelessWidget {
@@ -35,10 +37,7 @@ class FoodCardTile extends StatelessWidget {
           ),
           Row(
             children: [
-              _buildFoodIncrementDecrementSection(
-                textTheme: textTheme,
-                totalFoodCount: 1,
-              ),
+              const FoodIncrementDecrementSection(totalFoodCount: 1),
               const Spacer(),
               _buildFoodAddButton(),
             ],
@@ -92,41 +91,15 @@ class FoodCardTile extends StatelessWidget {
             overflow: TextOverflow.ellipsis,
             style: textTheme.bodyLarge,
           ),
-
-          RichText(
-            text: TextSpan(
-              style: textTheme.bodyLarge,
-              children: [
-                TextSpan(text: "TK ${fooder.discountPrice ?? 0}\t\t"),
-                TextSpan(
-                    style: textTheme.titleSmall?.copyWith(
-                      decoration: TextDecoration.lineThrough,
-                    ),
-                    text: "${fooder.originalPrice ?? 0}"),
-              ],
-            ),
+          DualRichText(
+            primaryText: "TK ${fooder.discountPrice ?? 0}\t\t",
+            secondaryText: "${fooder.originalPrice ?? 0}",
           ),
-
-          Row(
-            children: [
-              Container(
-                decoration: const BoxDecoration(
-                  color: AppColors.kAmberYellowColor,
-                  shape: BoxShape.circle,
-                ),
-                padding: const EdgeInsets.all(4),
-                child: const Icon(
-                  Icons.percent,
-                  color: AppColors.kWhiteColor,
-                  size: 16,
-                ),
-              ),
-              const Gap(8),
-              Text(
-                "Free Delivery",
-                style: textTheme.bodyLarge,
-              ),
-            ],
+          const HorizontalIconIconWithText(
+            title: "Free Delivery",
+            icon: Icons.percent_sharp,
+            iconBgColor: AppColors.kAmberYellowColor,
+            iconColor: AppColors.kWhiteColor,
           ),
         ],
       ),
@@ -142,33 +115,4 @@ class FoodCardTile extends StatelessWidget {
   }
 }
 
-Widget _buildFoodIncrementDecrementSection({
-  required TextTheme textTheme,
-  required int totalFoodCount,
-}) {
-  return SizedBox(
-    width: 150,
-    child: FittedBox(
-      child: Row(
-        children: [
-          IncrementDecrementButton(
-            icon: Icons.remove,
-            onPressed: () {},
-            bgColor: AppColors.kLightGreyColor,
-          ),
-          Container(
-            padding: const EdgeInsets.all(12),
-            child: Text(
-              "$totalFoodCount",
-              style: textTheme.titleMedium,
-            ),
-          ),
-          IncrementDecrementButton(
-            icon: Icons.add,
-            onPressed: () {},
-          ),
-        ],
-      ),
-    ),
-  );
-}
+

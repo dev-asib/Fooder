@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:fooder/core/data/models/location_model.dart';
 import 'package:fooder/core/theme/app_colors/app_colors.dart';
-import 'package:fooder/features/common/providers/fooder_provider.dart';
+import 'package:fooder/core/widgets/centered_circular_progress_indicator.dart';
+import 'package:fooder/features/common/providers/locations_provider.dart';
+import 'package:provider/provider.dart';
 
 class LocationSelector extends StatelessWidget {
-  const LocationSelector({
-    super.key,
-    required this.homeProvider,
-  });
-
-  final FooderProvider homeProvider;
+  const LocationSelector({super.key});
 
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
+    final locationsProvider = Provider.of<LocationsProvider>(context);
+
+    if (locationsProvider.locationList.isEmpty) {
+      return const CenteredCircularProgressIndicator();
+    }
 
     return Align(
       alignment: Alignment.center,
@@ -24,23 +27,23 @@ class LocationSelector extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: DropdownButton<String>(
           iconEnabledColor: AppColors.kPrimaryColor,
-          value: homeProvider.selectedLocation,
+          value: locationsProvider.selectedLocation,
           hint: Text(
-            homeProvider.locations.first,
+            locationsProvider.selectedLocation!,
             style: textTheme.titleSmall,
           ),
-          items: homeProvider.locations.map(
-            (String loc) {
+          items: locationsProvider.locationList.map(
+            (LocationModel loc) {
               return DropdownMenuItem(
-                value: loc,
+                value: loc.address,
                 child: Text(
-                  loc,
+                  loc.address!,
                   style: textTheme.titleSmall,
                 ),
               );
             },
           ).toList(),
-          onChanged: homeProvider.onChangedLocation,
+          onChanged: locationsProvider.onChangedLocation,
           isExpanded: false,
         ),
       ),

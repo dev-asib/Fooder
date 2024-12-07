@@ -1,0 +1,82 @@
+[
+  {
+    "categoryName": "Favorite",
+    "iconPath": "assets/icons/favorite.svg"
+  },
+  {
+    "categoryName": "Cheap",
+    "iconPath": "assets/icons/cheap.svg"
+  },
+  {
+    "categoryName": "Trend",
+    "iconPath": "assets/icons/trend.svg"
+  },
+  {
+    "categoryName": "More",
+    "iconPath": "assets/icons/more.svg"
+  },
+  {
+    "categoryName": "Healthy",
+    "iconPath": "assets/icons/healthy_icon.png"
+  },
+  {
+    "categoryName": "Spicy",
+    "iconPath": "assets/icons/spicy_icon.png"
+  },
+  {
+    "categoryName": "Vegan",
+    "iconPath": "assets/icons/vegan_icon.png"
+  },
+  {
+    "categoryName": "Desserts",
+    "iconPath": "assets/icons/desserts_icon.png"
+  },
+  {
+    "categoryName": "Beverages",
+    "iconPath": "assets/icons/beverages_icon.png"
+  },
+  {
+    "categoryName": "Fast Food",
+    "iconPath": "assets/icons/fast_food_icon.png"
+  },
+  {
+    "categoryName": "Seafood",
+    "iconPath": "assets/icons/seafood_icon.png"
+  },
+  {
+    "categoryName": "Breakfast",
+    "iconPath": "assets/icons/breakfast_icon.png"
+  },
+  {
+    "categoryName": "Lunch",
+    "iconPath": "assets/icons/lunch_icon.png"
+  },
+  {
+    "categoryName": "Dinner",
+    "iconPath": "assets/icons/dinner_icon.png"
+  },
+  {
+    "categoryName": "Grilled",
+    "iconPath": "assets/icons/grilled_icon.png"
+  },
+  {
+    "categoryName": "Baked",
+    "iconPath": "assets/icons/baked_icon.png"
+  },
+  {
+    "categoryName": "Soups",
+    "iconPath": "assets/icons/soups_icon.png"
+  },
+  {
+    "categoryName": "Snacks",
+    "iconPath": "assets/icons/snacks_icon.png"
+  },
+  {
+    "categoryName": "Ice Cream",
+    "iconPath": "assets/icons/ice_cream_icon.png"
+  },
+  {
+    "categoryName": "Pizza",
+    "iconPath": "assets/icons/pizza_icon.png"
+  }
+]

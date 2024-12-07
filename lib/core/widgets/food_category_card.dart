@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:fooder/core/data/models/category_model.dart';
 import 'package:fooder/core/theme/app_colors/app_colors.dart';
 import 'package:fooder/core/wrappers/svg_viewer.dart';
 
 class FoodCategoryCard extends StatelessWidget {
   const FoodCategoryCard({
     super.key,
-    required this.iconPath,
-    required this.categoryTitle,
+    required this.category,
   });
 
-  final String iconPath;
-  final String categoryTitle;
+  final CategoryModel category;
 
   @override
   Widget build(BuildContext context) {
@@ -29,15 +28,13 @@ class FoodCategoryCard extends StatelessWidget {
               height: 85,
               width: 85,
               padding: const EdgeInsets.all(24),
-              child: SvgViewer(svgAsset: iconPath)),
+              child: SvgViewer(svgAsset: category.iconPath!)),
         ),
         Text(
           overflow: TextOverflow.ellipsis,
           maxLines: 1,
-          categoryTitle,
-          style: textTheme.titleSmall?.copyWith(
-            fontSize: 18
-          ),
+          category.categoryName!,
+          style: textTheme.titleSmall?.copyWith(fontSize: 18),
         ),
       ],
     );

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:fooder/core/theme/app_colors/app_colors.dart';
 
 class Food extends StatelessWidget {
   const Food({
