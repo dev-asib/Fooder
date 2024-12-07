@@ -22,27 +22,30 @@ class FoodCardTile extends StatelessWidget {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return Card(
       color: AppColors.kWhiteColor,
-      child: Column(
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              _buildFoodImageSection(),
-              const Gap(16),
-              Expanded(
-                child: _buildFoodInfoSection(textTheme),
-              ),
-            ],
-          ),
-          Row(
-            children: [
-              const FoodIncrementDecrementSection(totalFoodCount: 1),
-              const Spacer(),
-              _buildFoodAddButton(),
-            ],
-          ),
-        ],
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                _buildFoodImageSection(),
+                const Gap(16),
+                Expanded(
+                  child: _buildFoodInfoSection(textTheme),
+                ),
+              ],
+            ),
+            Row(
+              children: [
+                const FoodIncrementDecrementSection(totalFoodCount: 1),
+                const Spacer(),
+                _buildFoodAddButton(),
+              ],
+            ),
+          ],
+        ),
       ),
     );
   }
