@@ -66,10 +66,10 @@ class FoodCardTile extends StatelessWidget {
       widget: Stack(
         alignment: Alignment.topRight,
         children: [
-          const Positioned(
+           Positioned(
             top: 4,
             right: 4,
-            child: WishIcon(),
+            child: WishIcon(food: fooder),
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 8.0),

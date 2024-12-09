@@ -92,7 +92,7 @@ class FoodDetailsScreen extends StatelessWidget {
             alignment: Alignment.topLeft,
           ),
           _buildTopIcon(
-            icon: const WishIcon(),
+            icon: WishIcon(food: fooder),
             alignment: Alignment.topRight,
           ),
           FoodDetailsBox(

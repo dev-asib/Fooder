@@ -1,23 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:fooder/core/data/models/fooder_model.dart';
 import 'package:fooder/core/widgets/custom_icon_button.dart';
+import 'package:fooder/features/wish_list/providers/wish_list_provider.dart';
+import 'package:provider/provider.dart';
 
-class WishIcon extends StatefulWidget {
-  const WishIcon({super.key});
+class WishIcon extends StatelessWidget {
+  const WishIcon({
+    super.key,
+    required this.food,
+  });
 
-  @override
-  State<WishIcon> createState() => _WishIconState();
-}
-
-class _WishIconState extends State<WishIcon> {
-  bool iconState = false;
+  final FooderModel food;
 
   @override
   Widget build(BuildContext context) {
+    final wishListProvider = Provider.of<WishListProvider>(context);
     return CustomIconButton(
-      icon: iconState ? Icons.favorite : Icons.favorite_outline,
+      icon: wishListProvider.isAddedFoodToWishList(food)
+          ? Icons.favorite
+          : Icons.favorite_outline,
       onPressed: () {
-        iconState = !iconState;
-        setState(() {});
+        wishListProvider.addToWishListFood(
+          context: context,
+          food: food,
+        );
       },
     );
   }

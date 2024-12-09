@@ -37,9 +37,9 @@ class FoodPromo extends StatelessWidget {
           widget: Stack(
             alignment: Alignment.topRight,
             children: [
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: WishIcon(),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: WishIcon(food: fooder),
               ),
               Positioned(
                 bottom: 8,

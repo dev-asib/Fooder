@@ -9,12 +9,14 @@ class HorizontalIconIconWithText extends StatelessWidget {
     required this.icon,
     this.iconBgColor,
     this.iconColor,
+    this.middleGap = 8,
   });
 
   final String title;
   final IconData icon;
   final Color? iconBgColor;
   final Color? iconColor;
+  final double middleGap;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +34,7 @@ class HorizontalIconIconWithText extends StatelessWidget {
             color: iconColor ?? AppColors.kAmberYellowColor,
           ),
         ),
-        const Gap(8),
+        Gap(middleGap),
         Text(
           title,
           style: Theme.of(context).textTheme.bodyLarge,
