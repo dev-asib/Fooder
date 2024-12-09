@@ -86,7 +86,9 @@ class FoodDetailsScreen extends StatelessWidget {
         clipBehavior: Clip.none,
         children: [
           _buildTopIcon(
-            icon: const CustomAppBarLeadingIcon(),
+            icon: CustomAppBarLeadingIcon(
+              onTapAppBarLeadingButton: () => Navigator.pop(context),
+            ),
             alignment: Alignment.topLeft,
           ),
           _buildTopIcon(

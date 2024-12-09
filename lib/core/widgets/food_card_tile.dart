@@ -6,8 +6,10 @@ import 'package:fooder/core/widgets/horizontal_icon_with_text.dart';
 import 'package:fooder/core/widgets/food.dart';
 import 'package:fooder/core/widgets/stock_badge.dart';
 import 'package:fooder/core/widgets/wish_icon.dart';
+import 'package:fooder/features/cart/providers/cart_provider.dart';
 import 'package:fooder/features/common/widgets/food_increment_decrement_section.dart';
 import 'package:gap/gap.dart';
+import 'package:provider/provider.dart';
 
 class FoodCardTile extends StatelessWidget {
   const FoodCardTile({
@@ -19,6 +21,8 @@ class FoodCardTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final cartProvider = Provider.of<CartProvider>(context);
+
     final TextTheme textTheme = Theme.of(context).textTheme;
     return Card(
       color: AppColors.kWhiteColor,
@@ -41,7 +45,11 @@ class FoodCardTile extends StatelessWidget {
               children: [
                 const FoodIncrementDecrementSection(totalFoodCount: 1),
                 const Spacer(),
-                _buildFoodAddButton(),
+                _foodAddButton(
+                  context: context,
+                  cartProvider: cartProvider,
+                  fooder: fooder,
+                ),
               ],
             ),
           ],
@@ -109,13 +117,21 @@ class FoodCardTile extends StatelessWidget {
     );
   }
 
-  Widget _buildFoodAddButton() {
+  Widget _foodAddButton({
+    required BuildContext context,
+    required CartProvider cartProvider,
+    required FooderModel fooder,
+  }) {
     return ElevatedButton.icon(
-      onPressed: () {},
-      icon: const Icon(Icons.add),
-      label: const Text("Add"),
+      onPressed: () {
+        cartProvider.addToCartListFood(
+          context: context,
+          food: fooder,
+        );
+      },
+      icon:
+          Icon(cartProvider.isAddedFood(fooder) ? Icons.check : Icons.add),
+      label: Text(cartProvider.isAddedFood(fooder) ? "Added." : "Add"),
     );
   }
 }
-
-

@@ -7,6 +7,7 @@ import 'package:fooder/core/widgets/custom_notification_icon.dart';
 import 'package:fooder/core/widgets/food_category_card.dart';
 import 'package:fooder/core/widgets/food_promo.dart';
 import 'package:fooder/core/widgets/location_selector.dart';
+import 'package:fooder/core/widgets/text_with_button_row.dart';
 import 'package:fooder/features/common/providers/categories_provider.dart';
 import 'package:fooder/features/common/providers/locations_provider.dart';
 import 'package:fooder/features/food_list/presentations/screens/food_list_screen.dart';
@@ -95,28 +96,19 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _promoHeader(TextTheme textTheme) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          HomeStrings.kTodayPromoTxt,
-          style: textTheme.titleLarge?.copyWith(
-            fontWeight: FontWeight.w500,
-            fontSize: 28,
-          ),
-        ),
-        TextButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const FoodListScreen(),
-              ),
-            );
-          },
-          child: const Text(HomeStrings.kSeeAllTxt),
-        ),
-      ],
+    return TextWithButtonRow(
+      contentTitle: HomeStrings.kTodayPromoTxt,
+      button: TextButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const FoodListScreen(),
+            ),
+          );
+        },
+        child: const Text(HomeStrings.kSeeAllTxt),
+      ),
     );
   }
 

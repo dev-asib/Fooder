@@ -14,10 +14,7 @@ class FoodListScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final fooderProvider = Provider.of<FooderProvider>(context);
     return Scaffold(
-      appBar: const CustomAppBar(
-        leadingWidget: CustomAppBarLeadingIcon(),
-        title: FoodListStrings.kAppBarTitle,
-      ),
+      appBar: _buildAppBar(context),
       body: Padding(
         padding: const EdgeInsets.all(Paddings.kScreenAllPadding),
         child: ListView.builder(
@@ -29,6 +26,15 @@ class FoodListScreen extends StatelessWidget {
           },
         ),
       ),
+    );
+  }
+
+  CustomAppBar _buildAppBar(BuildContext context) {
+    return CustomAppBar(
+      leadingWidget: CustomAppBarLeadingIcon(
+        onTapAppBarLeadingButton: () => Navigator.pop(context, true),
+      ),
+      title: FoodListStrings.kAppBarTitle,
     );
   }
 }

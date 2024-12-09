@@ -8,23 +8,28 @@ class SvgViewer extends StatelessWidget {
     required this.svgAsset,
     this.height = 45,
     this.width = 45,
+    this.onTap,
   });
 
   final String svgAsset;
   final double height;
   final double width;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     if (svgAsset.isEmpty) {
       return const Icon(Icons.broken_image_outlined);
     }
-    return SvgPicture.asset(
-      svgAsset,
-      height: height,
-      width: width,
-      placeholderBuilder: (context) => const CenteredCircularProgressIndicator(),
+    return InkWell(
+      onTap: onTap,
+      child: SvgPicture.asset(
+        svgAsset,
+        height: height,
+        width: width,
+        placeholderBuilder: (context) =>
+            const CenteredCircularProgressIndicator(),
+      ),
     );
   }
 }
-

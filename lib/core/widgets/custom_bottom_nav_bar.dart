@@ -23,15 +23,15 @@ class CustomBottomNavBar extends StatelessWidget {
             index: 0,
           ),
           _buildBottomNavIconSection(
-            icon: Icons.shopping_cart_outlined,
+            icon: Icons.category,
             index: 1,
           ),
           _buildBottomNavIconSection(
-            icon: Icons.favorite_outline,
+            icon: Icons.shopping_cart_outlined,
             index: 2,
           ),
           _buildBottomNavIconSection(
-            icon: Icons.drag_handle_outlined,
+            icon: Icons.favorite_outline,
             index: 3,
           ),
         ],

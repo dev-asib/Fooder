@@ -2,7 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:fooder/core/widgets/custom_icon_button.dart';
 
 class CustomAppBarLeadingIcon extends StatelessWidget {
-  const CustomAppBarLeadingIcon({super.key});
+  const CustomAppBarLeadingIcon({
+    super.key,
+    required this.onTapAppBarLeadingButton,
+  });
+
+  final VoidCallback onTapAppBarLeadingButton;
 
   @override
   Widget build(BuildContext context) {
@@ -12,9 +17,7 @@ class CustomAppBarLeadingIcon extends StatelessWidget {
         leftPadding: 8,
         radius: 8,
         icon: Icons.arrow_back_ios,
-        onPressed: () {
-          Navigator.pop(context);
-        },
+        onPressed: onTapAppBarLeadingButton,
       ),
     );
   }

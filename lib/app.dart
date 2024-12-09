@@ -2,9 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:fooder/core/theme/app_colors/app_colors.dart';
 import 'package:fooder/features/main_bottom_nav/presentation/screens/main_bottom_nav_screen.dart';
 
-class Fooder extends StatelessWidget {
+class Fooder extends StatefulWidget {
   const Fooder({super.key});
 
+  @override
+  State<Fooder> createState() => _FooderState();
+}
+
+class _FooderState extends State<Fooder> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -75,7 +80,7 @@ class Fooder extends StatelessWidget {
             fontWeight: FontWeight.bold,
           ),
         ),
-        tabBarTheme:  TabBarTheme(
+        tabBarTheme: TabBarTheme(
           indicator: const BoxDecoration(
             color: AppColors.kPrimaryColor,
           ),
@@ -87,7 +92,35 @@ class Fooder extends StatelessWidget {
         chipTheme: const ChipThemeData(
           backgroundColor: AppColors.kWhiteColor,
         ),
+        switchTheme: SwitchThemeData(
+          trackColor: WidgetStatePropertyAll(
+            AppColors.kPrimaryColor.withOpacity(0.2),
+          ),
+          thumbColor: const WidgetStatePropertyAll(AppColors.kPrimaryColor),
+          trackOutlineColor: const WidgetStatePropertyAll(Colors.transparent),
+        ),
+        inputDecorationTheme: InputDecorationTheme(
+          filled: true,
+          fillColor: const Color(0xFFE1E1E1),
+          hintStyle: const TextStyle(
+            color: Color(0xFF7E7E7E),
+            fontSize: 18,
+            fontWeight: FontWeight.w500
+          ),
+          border: _buildOutlineInputBorder(),
+          focusedBorder: _buildOutlineInputBorder(),
+          enabledBorder: _buildOutlineInputBorder(),
+          disabledBorder: _buildOutlineInputBorder(),
+          errorBorder: _buildOutlineInputBorder(),
+          focusedErrorBorder: _buildOutlineInputBorder(),
+        ),
       ),
     );
+  }
+
+  OutlineInputBorder _buildOutlineInputBorder() {
+    return const OutlineInputBorder(
+          borderSide: BorderSide.none
+        );
   }
 }

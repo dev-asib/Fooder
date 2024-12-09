@@ -5,4 +5,5 @@ class ImagesPaths {
       "${AssetsBasePath.kAssetsBasePath}/images";
 
   static String kFood = "$_kImagesBasePath/fruit_salad_mix.png";
+  static String kFoodDeliverySvg = "$_kImagesBasePath/food_delivery.svg";
 }

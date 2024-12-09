@@ -5,34 +5,37 @@ class CustomButton extends StatelessWidget {
     super.key,
     required this.widgets,
     required this.onPressed,
-    this.paddingTop = 8,
-    this.paddingBottom = 8,
-    this.paddingLeft = 8,
-    this.paddingRight = 8,
-    this.paddingAll = 8,
-    this.paddingVertical = 8,
-    this.paddingHorizontal = 8,
+    this.padding = 8,
+    this.width,
+    this.height,
+    this.borderRadius = 8,
   });
 
   final List<Widget> widgets;
   final VoidCallback onPressed;
-  final double paddingTop;
-  final double paddingBottom;
-  final double paddingLeft;
-  final double paddingRight;
-  final double paddingAll;
-  final double paddingVertical;
-  final double paddingHorizontal;
+  final double padding;
+  final double? width;
+  final double? height;
+  final double? borderRadius;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: paddingHorizontal),
-      child: ElevatedButton(
-        onPressed: () {},
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: widgets,
+      padding: EdgeInsets.symmetric(horizontal: padding),
+      child: SizedBox(
+        width: width,
+        height: height,
+        child: ElevatedButton(
+          onPressed: onPressed,
+          style: ElevatedButton.styleFrom(
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(borderRadius!),
+            ),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: widgets,
+          ),
         ),
       ),
     );
