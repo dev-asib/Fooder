@@ -33,4 +33,9 @@ class MainBottomNavProvider extends ChangeNotifier {
     onChangedIndex(0);
     notifyListeners();
   }
+
+  void backToCategory() {
+    onChangedIndex(1);
+    notifyListeners();
+  }
 }

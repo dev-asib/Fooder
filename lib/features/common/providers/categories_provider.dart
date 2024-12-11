@@ -7,10 +7,14 @@ import 'package:fooder/core/data/models/category_model.dart';
 class CategoriesProvider extends ChangeNotifier {
   List<CategoryModel> _categoryList = [];
 
-  List<CategoryModel> get categoryList => _categoryList;
+  List<CategoryModel> get categoryList {
+    return _categoryList
+        .where((category) => category.categoryName != "More")
+        .toList();
+  }
 
   List<CategoryModel> homeCategory() {
-    return _categoryList.take(4).toList();
+    return _categoryList.isNotEmpty ? _categoryList.take(4).toList() : [];
   }
 
   Future<void> loadCategoryData() async {

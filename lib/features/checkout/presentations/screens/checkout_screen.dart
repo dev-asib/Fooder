@@ -4,7 +4,7 @@ import 'package:fooder/core/theme/app_colors/app_colors.dart';
 import 'package:fooder/core/widgets/custom_app_bar.dart';
 import 'package:fooder/core/widgets/custom_app_bar_leading_icon.dart';
 import 'package:fooder/core/widgets/custom_button.dart';
-import 'package:fooder/core/widgets/empty_food.dart';
+import 'package:fooder/core/widgets/empty_food_widget.dart';
 import 'package:fooder/core/widgets/food_card_tile.dart';
 import 'package:fooder/core/widgets/text_with_button_row.dart';
 import 'package:fooder/core/wrappers/alert_message.dart';
@@ -141,7 +141,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             children: [
               _myBucketHeader(context),
               const Gap(8),
+              const Spacer(),
               _buildCartItemList(cartProvider),
+              const Spacer(),
             ],
           ),
         ),
@@ -152,7 +154,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   Widget _buildCartItemList(CartProvider cartProvider) {
     return Visibility(
       visible: cartProvider.cartList.isNotEmpty,
-      replacement: const EmptyFood(),
+      replacement: const EmptyFoodWidget(
+        emptyFoodMessage: CheckoutStrings.kEmptyCheckoutFoodMessage,
+      ),
       child: Expanded(
         child: ListView.builder(
           itemCount: cartProvider.cartList.length,
@@ -174,7 +178,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => const FoodListScreen(),
+              builder: (context) => const FoodListScreen(
+                categoryName: CheckoutStrings.kFoodListAppBarTitle,
+              ),
             ),
           ).then(
             (result) {

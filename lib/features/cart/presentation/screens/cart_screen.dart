@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fooder/core/constants/assets_paths/icons_paths.dart';
 import 'package:fooder/core/widgets/custom_app_bar.dart';
-import 'package:fooder/core/widgets/empty_food.dart';
+import 'package:fooder/core/widgets/empty_food_widget.dart';
 import 'package:fooder/core/widgets/food_card_tile.dart';
 import 'package:fooder/core/wrappers/svg_viewer.dart';
 import 'package:fooder/features/cart/providers/cart_provider.dart';
@@ -19,7 +19,9 @@ class CartScreen extends StatelessWidget {
       appBar: _buildCartAppBar(context),
       body: Visibility(
         visible: cartProvider.cartList.isNotEmpty,
-        replacement: const EmptyFood(),
+        replacement: const EmptyFoodWidget(
+          emptyFoodMessage: CartStrings.kEmptyCartMessage,
+        ),
         child: ListView.builder(
           itemCount: cartProvider.cartList.length,
           itemBuilder: (context, index) {

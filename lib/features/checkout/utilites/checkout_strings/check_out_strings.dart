@@ -8,4 +8,6 @@ class CheckoutStrings {
       "Add a note of delivery address";
   static const String kMyBucketTxt = "My Bucket";
   static const String kAddItemsTxt = "Add Items";
+  static const String kFoodListAppBarTitle = "Food";
+  static const String kEmptyCheckoutFoodMessage = "No checkout food found.";
 }
