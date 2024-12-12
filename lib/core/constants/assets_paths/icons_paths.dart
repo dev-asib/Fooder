@@ -1,4 +1,4 @@
-import 'package:fooder/core/constants/assets_paths/assets_base_path.dart';
+import 'package:fooder/core/exported_files/exported_files.dart';
 
 class IconsPaths {
   static final String _kIconsBasePath =

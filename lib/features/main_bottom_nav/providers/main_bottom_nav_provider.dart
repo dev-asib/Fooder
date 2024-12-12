@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooder/core/theme/app_colors/app_colors.dart';
-import 'package:fooder/features/cart/presentation/screens/cart_screen.dart';
-import 'package:fooder/features/category/presentation/screens/category_screen.dart';
-import 'package:fooder/features/home/presentations/screens/home_screen.dart';
-import 'package:fooder/features/wish_list/presentation/screens/wish_list_screen.dart';
+import 'package:fooder/core/exported_files/exported_files.dart';
 
 class MainBottomNavProvider extends ChangeNotifier {
   int _selectedIndex = 0;

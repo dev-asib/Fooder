@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooder/core/constants/assets_paths/icons_paths.dart';
-import 'package:fooder/core/wrappers/svg_viewer.dart';
-import 'package:fooder/features/checkout/utilites/checkout_strings/check_out_strings.dart';
+import 'package:fooder/core/exported_files/exported_files.dart';
 import 'package:gap/gap.dart';
 
 class FoodDeliveryLocationSection extends StatelessWidget {

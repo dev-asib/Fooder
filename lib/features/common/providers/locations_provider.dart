@@ -1,8 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:fooder/core/constants/assets_paths/jsons_paths.dart';
-import 'package:fooder/core/data/models/location_model.dart';
+import 'package:fooder/core/exported_files/exported_files.dart';
 
 class LocationsProvider extends ChangeNotifier {
   String? _selectedLocation;

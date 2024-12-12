@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooder/core/data/models/fooder_model.dart';
-import 'package:fooder/core/widgets/food.dart';
-import 'package:fooder/core/widgets/horizontal_icon_with_text.dart';
-import 'package:fooder/core/widgets/wish_icon.dart';
-import 'package:fooder/features/food_details/presentations/screens/food_details_screen.dart';
+import 'package:fooder/core/exported_files/exported_files.dart';
 
 class WishFood extends StatelessWidget {
   const WishFood({
@@ -11,7 +7,7 @@ class WishFood extends StatelessWidget {
     required this.food,
   });
 
-  final FooderModel food;
+  final FoodModel food;
 
   @override
   Widget build(BuildContext context) {

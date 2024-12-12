@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:fooder/core/data/models/fooder_model.dart';
-import 'package:fooder/core/wrappers/alert_message.dart';
+import 'package:fooder/core/exported_files/exported_files.dart';
 
 class CartProvider extends ChangeNotifier {
-  final List<FooderModel> _cartList = [];
+  final List<FoodModel> _cartList = [];
   double _totalCartPrice = 0.0;
 
-  List<FooderModel> get cartList => List.unmodifiable(_cartList);
+  List<FoodModel> get cartList => List.unmodifiable(_cartList);
 
   double get totalCartPrice => _totalCartPrice;
 
   void addToCartListFood({
     required BuildContext context,
-    required FooderModel food,
+    required FoodModel food,
   }) {
     if (_cartList.any((item) => item.id == food.id)) {
       _cartList.removeWhere((item) => item.id == food.id);
@@ -41,7 +40,7 @@ class CartProvider extends ChangeNotifier {
     }
   }
 
-  bool isAddedFood(FooderModel food) {
+  bool isAddedFood(FoodModel food) {
     return _cartList.any((item) => item.id == food.id);
   }
 }

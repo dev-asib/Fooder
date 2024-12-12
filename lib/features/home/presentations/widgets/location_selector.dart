@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooder/core/data/models/location_model.dart';
-import 'package:fooder/core/theme/app_colors/app_colors.dart';
-import 'package:fooder/core/widgets/centered_circular_progress_indicator.dart';
-import 'package:fooder/features/common/providers/locations_provider.dart';
+import 'package:fooder/core/exported_files/exported_files.dart';
 import 'package:provider/provider.dart';
 
 class LocationSelector extends StatelessWidget {

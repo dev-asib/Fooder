@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooder/core/data/models/reviews_model.dart';
-import 'package:fooder/core/theme/app_colors/app_colors.dart';
-import 'package:fooder/core/widgets/custom_ratings.dart';
+import 'package:fooder/core/exported_files/exported_files.dart';
 import 'package:gap/gap.dart';
 
 class FoodReviewsView extends StatelessWidget {

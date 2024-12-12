@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooder/core/constants/paddings/paddings.dart';
-import 'package:fooder/core/widgets/custom_app_bar.dart';
-import 'package:fooder/core/widgets/food_category_card.dart';
-import 'package:fooder/features/category/utilities/constants/category_strings.dart';
-import 'package:fooder/features/common/providers/categories_provider.dart';
+import 'package:fooder/core/exported_files/exported_files.dart';
 import 'package:provider/provider.dart';
 
 class CategoryScreen extends StatelessWidget {

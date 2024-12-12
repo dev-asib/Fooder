@@ -1,19 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooder/core/constants/paddings/paddings.dart';
-import 'package:fooder/core/theme/app_colors/app_colors.dart';
-import 'package:fooder/core/widgets/custom_app_bar.dart';
-import 'package:fooder/core/widgets/custom_app_bar_leading_icon.dart';
-import 'package:fooder/core/widgets/custom_button.dart';
-import 'package:fooder/core/widgets/empty_food_widget.dart';
-import 'package:fooder/core/widgets/food_card_tile.dart';
-import 'package:fooder/core/widgets/text_with_button_row.dart';
-import 'package:fooder/core/wrappers/alert_message.dart';
-import 'package:fooder/features/checkout/presentations/widgets/food_delivery_location_section.dart';
-import 'package:fooder/features/cart/providers/cart_provider.dart';
-import 'package:fooder/features/checkout/providers/checkout_provider.dart';
-import 'package:fooder/features/checkout/utilites/checkout_strings/check_out_strings.dart';
-import 'package:fooder/features/food_list/presentations/screens/food_list_screen.dart';
-import 'package:fooder/features/order/presentations/screens/order_screen.dart';
+import 'package:fooder/core/exported_files/exported_files.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 
@@ -63,12 +49,32 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               ),
             ),
           ),
-          _buildOrderSummaryButton(
-            context: context,
-            cartProvider: cartProvider,
-          ),
+          _buildOrderButton(cartProvider, context),
         ],
       ),
+    );
+  }
+
+  Widget _buildOrderButton(CartProvider cartProvider, BuildContext context) {
+    return OrderButton(
+      buttonTitle: CheckoutStrings.kPlaceOrderTxt,
+      totalItems: cartProvider.cartList.length,
+      totalPrice: cartProvider.totalCartPrice,
+      onPressed: () {
+        if (cartProvider.cartList.isEmpty) {
+          AlertMessage.showFlushBarMessage(
+            context: context,
+            message: "Cart is Empty! Please add item.",
+          );
+        } else {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const OrderScreen(),
+            ),
+          );
+        }
+      },
     );
   }
 
@@ -76,45 +82,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     return FoodDeliveryLocationSection(
       deliveryAddressFormKey: deliveryAddressFormKey,
       deliveryAddressTEController: deliveryAddressTEController,
-    );
-  }
-
-  Widget _buildOrderSummaryButton({
-    required BuildContext context,
-    required CartProvider cartProvider,
-  }) {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border.all(
-          width: 5,
-          color: AppColors.kWhiteColor,
-        ),
-      ),
-      child: CustomButton(
-        padding: 0,
-        widgets: [
-          Text("${cartProvider.cartList.length} Items"),
-          const Spacer(),
-          const Text("Place Order"),
-          const Spacer(),
-          Text("TK ${cartProvider.totalCartPrice.toStringAsFixed(2)}"),
-        ],
-        onPressed: () {
-          if (cartProvider.cartList.isEmpty) {
-            AlertMessage.showFlushBarMessage(
-              context: context,
-              message: "Cart is Empty! Please add item.",
-            );
-          } else {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const OrderScreen(),
-              ),
-            );
-          }
-        },
-      ),
     );
   }
 
@@ -141,9 +108,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             children: [
               _myBucketHeader(context),
               const Gap(8),
-              const Spacer(),
+              if (cartProvider.cartList.isEmpty) const Spacer(),
               _buildCartItemList(cartProvider),
-              const Spacer(),
+              if (cartProvider.cartList.isEmpty) const Spacer(),
             ],
           ),
         ),

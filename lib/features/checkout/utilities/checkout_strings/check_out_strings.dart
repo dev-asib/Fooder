@@ -10,4 +10,5 @@ class CheckoutStrings {
   static const String kAddItemsTxt = "Add Items";
   static const String kFoodListAppBarTitle = "Food";
   static const String kEmptyCheckoutFoodMessage = "No checkout food found.";
+  static const String kPlaceOrderTxt = "Place Order.";
 }

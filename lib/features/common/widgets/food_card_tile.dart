@@ -1,13 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooder/core/data/models/fooder_model.dart';
-import 'package:fooder/core/theme/app_colors/app_colors.dart';
-import 'package:fooder/core/widgets/dual_rich_text.dart';
-import 'package:fooder/core/widgets/horizontal_icon_with_text.dart';
-import 'package:fooder/core/widgets/food.dart';
-import 'package:fooder/core/widgets/stock_badge.dart';
-import 'package:fooder/core/widgets/wish_icon.dart';
-import 'package:fooder/features/cart/providers/cart_provider.dart';
-import 'package:fooder/features/common/widgets/food_increment_decrement_section.dart';
+import 'package:fooder/core/exported_files/exported_files.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 
@@ -17,7 +9,7 @@ class FoodCardTile extends StatelessWidget {
     required this.fooder,
   });
 
-  final FooderModel fooder;
+  final FoodModel fooder;
 
   @override
   Widget build(BuildContext context) {
@@ -120,7 +112,7 @@ class FoodCardTile extends StatelessWidget {
   Widget _foodAddButton({
     required BuildContext context,
     required CartProvider cartProvider,
-    required FooderModel fooder,
+    required FoodModel fooder,
   }) {
     return ElevatedButton.icon(
       onPressed: () {

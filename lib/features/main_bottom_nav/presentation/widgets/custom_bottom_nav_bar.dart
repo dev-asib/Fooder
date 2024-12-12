@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooder/core/theme/app_colors/app_colors.dart';
-import 'package:fooder/features/main_bottom_nav/providers/main_bottom_nav_provider.dart';
+import 'package:fooder/core/exported_files/exported_files.dart';
 
 class CustomBottomNavBar extends StatelessWidget {
   const CustomBottomNavBar({

@@ -1,7 +1,6 @@
+import 'package:fooder/core/exported_files/exported_files.dart';
 
-import 'package:fooder/core/data/models/reviews_model.dart';
-
-class FooderModel {
+class FoodModel {
   int? id;
   String? foodTitle;
   String? foodDetails;
@@ -13,7 +12,7 @@ class FooderModel {
   List<ReviewsModel>? reviewList;
   bool? isFavorite;
 
-  FooderModel({
+  FoodModel({
     this.id,
     this.foodTitle,
     this.foodDetails,
@@ -26,7 +25,7 @@ class FooderModel {
     this.isFavorite,
   });
 
-  FooderModel.fromJson(Map<String, dynamic> json) {
+  FoodModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     foodTitle = json['foodTitle'];
     foodDetails = json['foodDetails'];

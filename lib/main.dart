@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:fooder/app.dart';
-import 'package:fooder/core/app_providers/app_providers.dart';
+import 'package:fooder/core/exported_files/exported_files.dart';
 import 'package:provider/provider.dart';
 import 'package:device_preview/device_preview.dart';
 

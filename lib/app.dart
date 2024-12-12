@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooder/core/theme/app_colors/app_colors.dart';
-import 'package:fooder/features/main_bottom_nav/presentation/screens/main_bottom_nav_screen.dart';
+import 'package:fooder/core/exported_files/exported_files.dart';
 
 class Fooder extends StatefulWidget {
   const Fooder({super.key});

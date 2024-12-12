@@ -1,10 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooder/core/constants/paddings/paddings.dart';
-import 'package:fooder/core/widgets/custom_app_bar.dart';
-import 'package:fooder/core/widgets/empty_food_widget.dart';
-import 'package:fooder/features/wish_list/presentation/widgets/wish_food.dart';
-import 'package:fooder/features/wish_list/providers/wish_list_provider.dart';
-import 'package:fooder/features/wish_list/utilities/constants/wish_list_strings.dart';
+import 'package:fooder/core/exported_files/exported_files.dart';
 import 'package:provider/provider.dart';
 
 class WishListScreen extends StatelessWidget {

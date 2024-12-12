@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooder/core/constants/assets_paths/lotties_paths.dart';
-import 'package:fooder/core/wrappers/lottie_viewer.dart';
+import 'package:fooder/core/exported_files/exported_files.dart';
 
 class EmptyFoodWidget extends StatelessWidget {
   const EmptyFoodWidget({

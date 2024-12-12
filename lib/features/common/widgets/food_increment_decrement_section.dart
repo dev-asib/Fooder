@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooder/core/theme/app_colors/app_colors.dart';
-import 'package:fooder/core/widgets/increment_decrement_button.dart';
+import 'package:fooder/core/exported_files/exported_files.dart';
 
 class FoodIncrementDecrementSection extends StatelessWidget {
   const FoodIncrementDecrementSection({

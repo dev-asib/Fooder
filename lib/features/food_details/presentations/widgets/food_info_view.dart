@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:fooder/core/data/models/fooder_model.dart';
-import 'package:fooder/core/widgets/custom_ratings.dart';
-import 'package:fooder/core/widgets/dual_rich_text.dart';
-import 'package:fooder/features/common/widgets/food_increment_decrement_section.dart';
+import 'package:fooder/core/exported_files/exported_files.dart';
 import 'package:gap/gap.dart';
 
 class FoodInfoView extends StatelessWidget {
@@ -11,7 +8,7 @@ class FoodInfoView extends StatelessWidget {
     required this.fooder,
   });
 
-  final FooderModel fooder;
+  final FoodModel fooder;
 
   @override
   Widget build(BuildContext context) {

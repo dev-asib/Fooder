@@ -1,15 +1,14 @@
 import 'package:flutter/material.dart';
-import 'package:fooder/core/data/models/fooder_model.dart';
-import 'package:fooder/core/wrappers/alert_message.dart';
+import 'package:fooder/core/exported_files/exported_files.dart';
 
 class WishListProvider extends ChangeNotifier {
-  final List<FooderModel> _wishList = [];
+  final List<FoodModel> _wishList = [];
 
-  List<FooderModel> get wishList => List.unmodifiable(_wishList);
+  List<FoodModel> get wishList => List.unmodifiable(_wishList);
 
   void addToWishListFood({
     required BuildContext context,
-    required FooderModel food,
+    required FoodModel food,
   }) {
     if (_wishList.any((item) => item.id == food.id)) {
       _wishList.removeWhere((item) => item.id == food.id);
@@ -30,7 +29,7 @@ class WishListProvider extends ChangeNotifier {
     }
   }
 
-  bool isAddedFoodToWishList(FooderModel food) {
+  bool isAddedFoodToWishList(FoodModel food) {
     return _wishList.any((item) => item.id == food.id);
   }
 }
