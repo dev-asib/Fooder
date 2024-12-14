@@ -26,6 +26,7 @@ class LocationSelector extends StatelessWidget {
         ),
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: DropdownButton<String>(
+          underline: const SizedBox.shrink(),
           iconEnabledColor: AppColors.kPrimaryColor,
           value: homeProvider.selectedLocation,
           hint: Text(
