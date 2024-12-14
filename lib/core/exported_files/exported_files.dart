@@ -1,6 +1,6 @@
 //fooder/
 export 'package:fooder/main.dart';
-export 'package:fooder/app.dart';
+export 'package:fooder/app/app.dart';
 
 // fooder/core/
 export 'package:fooder/core/app_providers/providers/food_provider.dart';
@@ -12,6 +12,7 @@ export 'package:fooder/core/constants/assets_paths/jsons_paths.dart';
 export 'package:fooder/core/constants/assets_paths/lotties_paths.dart';
 export 'package:fooder/core/constants/paddings/paddings.dart';
 export 'package:fooder/core/data/models/food_model.dart';
+export 'package:fooder/core/data/repositories/food_repository.dart';
 export 'package:fooder/core/routes/app_routes.dart';
 export 'package:fooder/core/routes/route_names.dart';
 export 'package:fooder/core/theme/app_colors/app_colors.dart';
@@ -35,8 +36,11 @@ export 'package:fooder/core/wrappers/svg_viewer.dart';
 export 'package:fooder/features/common/data/models/category_model.dart';
 export 'package:fooder/features/common/data/models/location_model.dart';
 export 'package:fooder/features/common/data/models/reviews_model.dart';
+export 'package:fooder/features/common/data/repositories/location_repository.dart';
+export 'package:fooder/features/common/data/repositories/category_repository.dart';
 export 'package:fooder/features/common/providers/categories_provider.dart';
 export 'package:fooder/features/common/providers/locations_provider.dart';
+export 'package:fooder/features/common/providers/promo_food_provider.dart';
 export 'package:fooder/features/common/widgets/custom_ratings.dart';
 export 'package:fooder/features/common/widgets/empty_food_widget.dart';
 export 'package:fooder/features/common/widgets/food.dart';
@@ -48,9 +52,9 @@ export 'package:fooder/features/common/widgets/stock_badge.dart';
 export 'package:fooder/features/common/widgets/wish_icon.dart';
 
 // fooder/features/cart/
-export 'package:fooder/features/cart/presentation/screens/cart_screen.dart';
-export 'package:fooder/features/cart/providers/cart_provider.dart';
-export 'package:fooder/features/cart/utilities/constants/cart_strings.dart';
+export 'package:fooder/features/cart_list/presentation/screens/cart_list_screen.dart';
+export 'package:fooder/features/cart_list/providers/cart_list_provider.dart';
+export 'package:fooder/features/cart_list/utilities/constants/cart_strings.dart';
 
 // fooder/features/category/
 export 'package:fooder/features/category/presentation/screens/category_screen.dart';
@@ -67,16 +71,19 @@ export 'package:fooder/features/food_details/presentations/screens/food_details_
 export 'package:fooder/features/food_details/presentations/widgets/food_info_view.dart';
 export 'package:fooder/features/food_details/presentations/widgets/food_reviews_view.dart';
 export 'package:fooder/features/food_details/presentations/widgets/food_details_box.dart';
+export 'package:fooder/features/food_details/providers/food_details_provider.dart';
 export 'package:fooder/features/food_details/utilities/constants/food_details_strings.dart';
 
 // fooder/features/food_list/
 export 'package:fooder/features/food_list/presentations/screens/food_list_screen.dart';
+export 'package:fooder/features/food_list/providers/food_list_provider.dart';
 
 // fooder/features/home/
 export 'package:fooder/features/home/presentations/screens/home_screen.dart';
 export 'package:fooder/features/home/presentations/widgets/custom_notification_icon.dart';
 export 'package:fooder/features/home/presentations/widgets/food_promo.dart';
 export 'package:fooder/features/home/presentations/widgets/location_selector.dart';
+export 'package:fooder/features/home/providers/home_provider.dart';
 export 'package:fooder/features/home/utilities/constants/home_strings.dart';
 
 // fooder/features/main_bottom_nav/
@@ -86,7 +93,6 @@ export 'package:fooder/features/main_bottom_nav/providers/main_bottom_nav_provid
 
 // fooder/features/order/
 export 'package:fooder/features/order/presentations/screens/order_screen.dart';
-export 'package:fooder/features/order/provider/order_provider.dart';
 export 'package:fooder/features/order/utilities/constants/order_strings.dart';
 
 // fooder/features/wish_list/
@@ -94,3 +100,6 @@ export 'package:fooder/features/wish_list/presentation/screens/wish_list_screen.
 export 'package:fooder/features/wish_list/presentation/widgets/wish_food.dart';
 export 'package:fooder/features/wish_list/providers/wish_list_provider.dart';
 export 'package:fooder/features/wish_list/utilities/constants/wish_list_strings.dart';
+
+// fooder/features/unknown/
+export 'package:fooder/features/unknown/presentations/screens/unknown_screen.dart';

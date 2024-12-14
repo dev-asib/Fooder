@@ -5,10 +5,16 @@ import 'package:gap/gap.dart';
 class FoodInfoView extends StatelessWidget {
   const FoodInfoView({
     super.key,
-    required this.fooder,
+    required this.food,
+    required this.onTapIncrementFood,
+    required this.onTapDecrementFood,
+    required this.totalFoodCount,
   });
 
-  final FoodModel fooder;
+  final FoodModel food;
+  final VoidCallback onTapIncrementFood;
+  final VoidCallback onTapDecrementFood;
+  final int totalFoodCount;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +27,7 @@ class FoodInfoView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              fooder.foodTitle!,
+              food.foodTitle!,
               style: textThem.titleMedium,
             ),
             const Gap(8),
@@ -29,12 +35,16 @@ class FoodInfoView extends StatelessWidget {
               children: [
                 Chip(
                   label: DualRichText(
-                    primaryText: "TK ${fooder.discountPrice!}",
-                    secondaryText: "${fooder.originalPrice!}",
+                    primaryText: "TK ${food.discountPrice!}",
+                    secondaryText: "${food.originalPrice!}",
                   ),
                 ),
                 const Spacer(),
-                const FoodIncrementDecrementSection(totalFoodCount: 1),
+                FoodIncrementDecrementSection(
+                  totalFoodCount: totalFoodCount,
+                  onTapIncrementFood: onTapIncrementFood,
+                  onTapDecrementFood: onTapDecrementFood,
+                ),
               ],
             ),
             const Gap(8),
@@ -42,11 +52,11 @@ class FoodInfoView extends StatelessWidget {
               label: Row(
                 children: [
                   Text(
-                    "Reviews ${fooder.totalReviews}",
+                    "Reviews ${food.totalReviews}",
                     style: textThem.titleMedium,
                   ),
                   const Spacer(),
-                  CustomRatings(ratings: fooder.reviewList![0].rating!),
+                  CustomRatings(ratings: food.reviewList![0].rating!),
                 ],
               ),
             ),
@@ -56,7 +66,7 @@ class FoodInfoView extends StatelessWidget {
               style: textThem.titleMedium,
             ),
             Text(
-              fooder.foodDetails!,
+              food.foodDetails!,
               style: textThem.titleSmall,
             ),
           ],

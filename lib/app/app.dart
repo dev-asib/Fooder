@@ -12,7 +12,8 @@ class _FooderState extends State<Fooder> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: const MainBottomNavScreen(),
+      initialRoute: RouteNames.mainBottomNavScreen,
+      onGenerateRoute: AppRoutes.generateRoute,
       theme: ThemeData(
         useMaterial3: true,
         scaffoldBackgroundColor: AppColors.kScaffoldBgColor,
@@ -102,10 +103,9 @@ class _FooderState extends State<Fooder> {
           filled: true,
           fillColor: const Color(0xFFE1E1E1),
           hintStyle: const TextStyle(
-            color: Color(0xFF7E7E7E),
-            fontSize: 18,
-            fontWeight: FontWeight.w500
-          ),
+              color: Color(0xFF7E7E7E),
+              fontSize: 18,
+              fontWeight: FontWeight.w500),
           border: _buildOutlineInputBorder(),
           focusedBorder: _buildOutlineInputBorder(),
           enabledBorder: _buildOutlineInputBorder(),
@@ -118,8 +118,6 @@ class _FooderState extends State<Fooder> {
   }
 
   OutlineInputBorder _buildOutlineInputBorder() {
-    return const OutlineInputBorder(
-          borderSide: BorderSide.none
-        );
+    return const OutlineInputBorder(borderSide: BorderSide.none);
   }
 }

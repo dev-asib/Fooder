@@ -9,7 +9,6 @@ class OrderScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
-    final orderProvider = Provider.of<OrderProvider>(context);
     return Scaffold(
       body: SafeArea(
         child: Padding(
@@ -36,7 +35,6 @@ class OrderScreen extends StatelessWidget {
                 _buildConfirmOrderButton(
                   textTheme,
                   context,
-                  orderProvider,
                 ),
               ],
             ),
@@ -49,7 +47,6 @@ class OrderScreen extends StatelessWidget {
   Widget _buildConfirmOrderButton(
     TextTheme textTheme,
     BuildContext context,
-    OrderProvider orderProvider,
   ) {
     return CustomButton(
       borderRadius: 12,
@@ -64,7 +61,21 @@ class OrderScreen extends StatelessWidget {
           ),
         ),
       ],
-      onPressed: () => orderProvider.onTapOrderConfirmButton(context),
+      onPressed: () => _onTapOrderConfirmButton(context),
+    );
+  }
+
+  void _onTapOrderConfirmButton(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const MainBottomNavScreen(),
+      ),
+    );
+    Provider.of<MainBottomNavProvider>(context, listen: false).backToHome();
+    AlertMessage.showFlushBarMessage(
+      context: context,
+      message: OrderStrings.kOrderConfirmationMessage,
     );
   }
 

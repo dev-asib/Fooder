@@ -4,35 +4,28 @@ import 'package:fooder/core/exported_files/exported_files.dart';
 class FoodPromo extends StatelessWidget {
   const FoodPromo({
     super.key,
-    required this.fooder,
+    required this.food,
   });
 
-  final FoodModel fooder;
+  final FoodModel food;
 
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => FoodDetailsScreen(fooder: fooder),
-          ),
-        );
-      },
+      onTap: () => _onTapFoodPromo(context),
       child: Card(
         color: AppColors.kWhiteColor,
         child: Food(
           height: 280,
           width: 300,
-          imgPath: fooder.imgPath ?? ImagesPaths.kFood,
+          imgPath: food.imgPath ?? ImagesPaths.kFood,
           widget: Stack(
             alignment: Alignment.topRight,
             children: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: WishIcon(food: fooder),
+                child: WishIcon(food: food),
               ),
               Positioned(
                 bottom: 8,
@@ -58,28 +51,35 @@ class FoodPromo extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Text(
-            fooder.foodTitle ?? 'Unknown Title',
+            food.foodTitle ?? 'Unknown Title',
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
             style: textTheme.titleMedium,
           ),
           Text(
-            fooder.foodDetails ?? 'Unknown Details',
+            food.foodDetails ?? 'Unknown Details',
             overflow: TextOverflow.ellipsis,
             maxLines: 1,
           ),
           Row(
             children: [
               DualRichText(
-                primaryText: "TK ${fooder.discountPrice ?? 0}\t\t",
-                secondaryText: "${fooder.originalPrice ?? 0}",
+                primaryText: "TK ${food.discountPrice ?? 0}\t\t",
+                secondaryText: "${food.originalPrice ?? 0}",
               ),
               const Spacer(),
-              StockBadge(stockCount: fooder.stockCount ?? 0),
+              StockBadge(stockCount: food.stockCount ?? 0),
             ],
           ),
         ],
       ),
+    );
+  }
+
+  void _onTapFoodPromo(BuildContext context) {
+    Navigator.of(context).pushNamed(
+      RouteNames.foodDetailsScreen,
+      arguments: food,
     );
   }
 }

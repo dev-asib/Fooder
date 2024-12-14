@@ -4,16 +4,15 @@ import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 
 class FoodDetailsScreen extends StatelessWidget {
-  const FoodDetailsScreen({
-    super.key,
-    required this.fooder,
-  });
-
-  final FoodModel fooder;
+  const FoodDetailsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final food = ModalRoute.of(context)?.settings.arguments as FoodModel?;
+    assert(food != null, "food must be a non-null FoodModel");
+
     final locationsProvider = Provider.of<LocationsProvider>(context);
+    final foodDetailsProvider = Provider.of<FoodDetailsProvider>(context);
     final TextTheme textTheme = Theme.of(context).textTheme;
     return DefaultTabController(
       length: 2,
@@ -25,34 +24,72 @@ class FoodDetailsScreen extends StatelessWidget {
               child: Column(
                 children: [
                   _buildFoodSection(
-                    context,
-                    textTheme,
-                    locationsProvider,
+                    context: context,
+                    textTheme: textTheme,
+                    locationsProvider: locationsProvider,
+                    food: food!,
                   ),
                   const Gap(90),
                   Expanded(
-                    child: _buildReviewsAndInfoSection(fooder),
+                    child: _buildReviewsAndInfoSection(
+                      food: food,
+                      foodDetailsProvider: foodDetailsProvider,
+                    ),
                   ),
                 ],
               ),
             ),
-            _buildOrderButton(),
+            _buildOrderButton(
+              context: context,
+              food: food,
+              foodDetailsProvider: foodDetailsProvider,
+            ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildOrderButton() {
+  Widget _buildOrderButton({
+    required BuildContext context,
+    required FoodModel food,
+    required FoodDetailsProvider foodDetailsProvider,
+  }) {
     return OrderButton(
       buttonTitle: FoodDetailsStrings.kCheckoutTxt,
-      totalItems: 19,
-      totalPrice: 20234.23,
-      onPressed: () {},
+      totalItems: foodDetailsProvider.totalFoodItem(food),
+      totalPrice: foodDetailsProvider.totalSubFoodPrice(food),
+      onPressed: () => _onTapOrderButton(
+        context: context,
+        food: food,
+        foodDetailsProvider: foodDetailsProvider,
+      ),
     );
   }
 
-  Widget _buildReviewsAndInfoSection(FoodModel fooder) {
+  void _onTapOrderButton({
+    required BuildContext context,
+    required FoodModel food,
+    required FoodDetailsProvider foodDetailsProvider,
+  }) {
+    if (foodDetailsProvider.totalFoodItem(food) > 0) {
+      foodDetailsProvider.addToCartListFood(
+        context: context,
+        food: food,
+      );
+      Navigator.of(context).pushNamed(RouteNames.checkoutScreen);
+    } else {
+      AlertMessage.showFlushBarMessage(
+        context: context,
+        message: "Food must be 1 or more than 1.",
+      );
+    }
+  }
+
+  Widget _buildReviewsAndInfoSection({
+    required FoodModel food,
+    required FoodDetailsProvider foodDetailsProvider,
+  }) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(
@@ -64,31 +101,43 @@ class FoodDetailsScreen extends StatelessWidget {
             ],
           ),
           Expanded(
-            child: _buildReviewsAndInfoView(fooder),
+            child: _buildReviewsAndInfoView(
+              food: food,
+              foodDetailsProvider: foodDetailsProvider,
+            ),
           ),
         ],
       ),
     );
   }
 
-  Widget _buildReviewsAndInfoView(FoodModel fooder) {
+  Widget _buildReviewsAndInfoView({
+    required FoodModel food,
+    required FoodDetailsProvider foodDetailsProvider,
+  }) {
     return TabBarView(
       children: [
-        FoodReviewsView(reviews: fooder.reviewList!),
-        FoodInfoView(fooder: fooder),
+        FoodReviewsView(reviews: food.reviewList!),
+        FoodInfoView(
+          food: food,
+          onTapIncrementFood: () => foodDetailsProvider.incrementFood(food),
+          onTapDecrementFood: () => foodDetailsProvider.decrementFood(food),
+          totalFoodCount: foodDetailsProvider.totalFoodItem(food),
+        ),
       ],
     );
   }
 
-  Widget _buildFoodSection(
-    BuildContext context,
-    TextTheme textTheme,
-    LocationsProvider locationProvider,
-  ) {
+  Widget _buildFoodSection({
+    required BuildContext context,
+    required TextTheme textTheme,
+    required LocationsProvider locationsProvider,
+    required FoodModel food,
+  }) {
     return Food(
       height: 300,
       width: double.maxFinite,
-      imgPath: fooder.imgPath!,
+      imgPath: food.imgPath!,
       widget: Stack(
         alignment: Alignment.bottomCenter,
         clipBehavior: Clip.none,
@@ -100,12 +149,12 @@ class FoodDetailsScreen extends StatelessWidget {
             alignment: Alignment.topLeft,
           ),
           _buildTopIcon(
-            icon: WishIcon(food: fooder),
+            icon: WishIcon(food: food),
             alignment: Alignment.topRight,
           ),
           FoodDetailsBox(
-            fooder: fooder,
-            locations: locationProvider.selectedLocationData()!,
+            food: food,
+            locations: locationsProvider.selectedLocationData()!,
           ),
         ],
       ),

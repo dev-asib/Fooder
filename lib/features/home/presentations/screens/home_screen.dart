@@ -21,17 +21,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _initializeProviders(BuildContext context) async {
     await Future.wait([
-      Provider.of<FoodProvider>(context, listen: false).loadFoodData(),
-      Provider.of<LocationsProvider>(context, listen: false).locationsData(),
-      Provider.of<CategoriesProvider>(context, listen: false)
-          .loadCategoryData(),
+      Provider.of<FoodProvider>(context, listen: false).loadFood(),
+      Provider.of<LocationsProvider>(context, listen: false).loadLocations(),
+      Provider.of<CategoriesProvider>(context, listen: false).loadCategories(),
     ]);
   }
 
   @override
   Widget build(BuildContext context) {
-    final fooderProvider = Provider.of<FoodProvider>(context);
-    final categoriesProvider = Provider.of<CategoriesProvider>(context);
+    final homeProvider = Provider.of<HomeProvider>(context);
     final TextTheme textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: _buildHomeAppBar(),
@@ -42,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const LocationSelector(),
+              LocationSelector(homeProvider: homeProvider),
               const Gap(24),
               Text(
                 HomeStrings.kUserCongratulationTxt,
@@ -56,11 +54,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
               const Gap(8),
-              _buildCategorySection(categoriesProvider),
+              _buildCategorySection(homeProvider),
               const Gap(24),
               _buildFoodPromoSection(
                 textTheme,
-                fooderProvider,
+                homeProvider,
               ),
             ],
           ),
@@ -71,13 +69,13 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildFoodPromoSection(
     TextTheme textTheme,
-    FoodProvider homProvider,
+    HomeProvider homeProvider,
   ) {
     return Column(
       children: [
         _promoHeader(textTheme),
         const Gap(8),
-        _buildFoodPromo(homProvider),
+        _buildFoodPromo(homeProvider),
       ],
     );
   }
@@ -86,45 +84,43 @@ class _HomeScreenState extends State<HomeScreen> {
     return TextWithButtonRow(
       contentTitle: HomeStrings.kTodayPromoTxt,
       button: TextButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const FoodListScreen(
-                categoryName: HomeStrings.kFoodListAppBarTitle,
-              ),
-            ),
-          );
-        },
+        onPressed: _onTapSeeAllButton,
         child: const Text(HomeStrings.kSeeAllTxt),
       ),
     );
   }
 
-  Widget _buildFoodPromo(FoodProvider fooderProvider) {
+  void _onTapSeeAllButton() {
+    Navigator.of(context).pushNamed(
+      RouteNames.foodListScreen,
+      arguments: HomeStrings.kFoodListAppBarTitle,
+    );
+  }
+
+  Widget _buildFoodPromo(HomeProvider homeProvider) {
     return Visibility(
-      visible: fooderProvider.foodList.isNotEmpty,
+      visible: homeProvider.homePromoFoodList.isNotEmpty,
       replacement: const CenteredCircularProgressIndicator(),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
-          children: fooderProvider.foodList.map((fooder) {
-            return FoodPromo(fooder: fooder);
+          children: homeProvider.homePromoFoodList.map((food) {
+            return FoodPromo(food: food);
           }).toList(),
         ),
       ),
     );
   }
 
-  Widget _buildCategorySection(CategoriesProvider categoriesProvider) {
+  Widget _buildCategorySection(HomeProvider homeProvider) {
     return Visibility(
-      visible: categoriesProvider.categoryList.isNotEmpty,
+      visible: homeProvider.homeCategoryList.isNotEmpty,
       replacement: const CenteredCircularProgressIndicator(),
       child: SingleChildScrollView(
         scrollDirection: Axis.horizontal,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: categoriesProvider.homeCategory().map(
+          children: homeProvider.homeCategoryList.map(
             (CategoryModel category) {
               return FoodCategoryCard(
                 category: category,

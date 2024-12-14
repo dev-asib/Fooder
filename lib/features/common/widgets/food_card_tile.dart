@@ -6,45 +6,58 @@ import 'package:provider/provider.dart';
 class FoodCardTile extends StatelessWidget {
   const FoodCardTile({
     super.key,
-    required this.fooder,
+    required this.food,
+    required this.onTapIncrementFood,
+    required this.onTapDecrementFood,
+    required this.totalFoodItem,
   });
 
-  final FoodModel fooder;
+  final FoodModel food;
+  final VoidCallback onTapIncrementFood;
+  final VoidCallback onTapDecrementFood;
+  final int totalFoodItem;
 
   @override
   Widget build(BuildContext context) {
-    final cartProvider = Provider.of<CartProvider>(context);
+    final cartProvider = Provider.of<CartListProvider>(context);
 
     final TextTheme textTheme = Theme.of(context).textTheme;
-    return Card(
-      color: AppColors.kWhiteColor,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _buildFoodImageSection(),
-                const Gap(16),
-                Expanded(
-                  child: _buildFoodInfoSection(textTheme),
-                ),
-              ],
-            ),
-            Row(
-              children: [
-                const FoodIncrementDecrementSection(totalFoodCount: 1),
-                const Spacer(),
-                _foodAddButton(
-                  context: context,
-                  cartProvider: cartProvider,
-                  fooder: fooder,
-                ),
-              ],
-            ),
-          ],
+    return InkWell(
+      onTap: () => _onTapFoodCart(context),
+      child: Card(
+        color: AppColors.kWhiteColor,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _buildFoodImageSection(),
+                  const Gap(16),
+                  Expanded(
+                    child: _buildFoodInfoSection(textTheme),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  FoodIncrementDecrementSection(
+                    totalFoodCount: totalFoodItem,
+                    onTapIncrementFood: onTapIncrementFood,
+                    onTapDecrementFood: onTapDecrementFood,
+                  ),
+                  const Spacer(),
+                  _foodAddButton(
+                    context: context,
+                    cartProvider: cartProvider,
+                    food: food,
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -54,20 +67,20 @@ class FoodCardTile extends StatelessWidget {
     return Food(
       height: 120,
       width: 145,
-      imgPath: fooder.imgPath!,
+      imgPath: food.imgPath!,
       widget: Stack(
         alignment: Alignment.topRight,
         children: [
-           Positioned(
+          Positioned(
             top: 4,
             right: 4,
-            child: WishIcon(food: fooder),
+            child: WishIcon(food: food),
           ),
           Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
             child: Align(
               alignment: Alignment.bottomCenter,
-              child: StockBadge(stockCount: fooder.stockCount ?? 0),
+              child: StockBadge(stockCount: food.stockCount ?? 0),
             ),
           ),
         ],
@@ -83,20 +96,20 @@ class FoodCardTile extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Text(
-            fooder.foodTitle!,
+            food.foodTitle!,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: textTheme.titleMedium,
           ),
           Text(
-            fooder.foodDetails!,
+            food.foodDetails!,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: textTheme.bodyLarge,
           ),
           DualRichText(
-            primaryText: "TK ${fooder.discountPrice ?? 0}\t\t",
-            secondaryText: "${fooder.originalPrice ?? 0}",
+            primaryText: "TK ${food.discountPrice ?? 0}\t\t",
+            secondaryText: "${food.originalPrice ?? 0}",
           ),
           const HorizontalIconIconWithText(
             title: "Free Delivery",
@@ -111,19 +124,25 @@ class FoodCardTile extends StatelessWidget {
 
   Widget _foodAddButton({
     required BuildContext context,
-    required CartProvider cartProvider,
-    required FoodModel fooder,
+    required CartListProvider cartProvider,
+    required FoodModel food,
   }) {
     return ElevatedButton.icon(
       onPressed: () {
         cartProvider.addToCartListFood(
           context: context,
-          food: fooder,
+          food: food,
         );
       },
-      icon:
-          Icon(cartProvider.isAddedFood(fooder) ? Icons.check : Icons.add),
-      label: Text(cartProvider.isAddedFood(fooder) ? "Added." : "Add"),
+      icon: Icon(cartProvider.isAddedFood(food) ? Icons.check : Icons.add),
+      label: Text(cartProvider.isAddedFood(food) ? "Added." : "Add"),
+    );
+  }
+
+  void _onTapFoodCart(BuildContext context) {
+    Navigator.of(context).pushNamed(
+      RouteNames.foodDetailsScreen,
+      arguments: food,
     );
   }
 }

@@ -3,28 +3,35 @@ import 'package:fooder/core/exported_files/exported_files.dart';
 import 'package:provider/provider.dart';
 
 class FoodListScreen extends StatelessWidget {
-  const FoodListScreen({
-    super.key,
-    required this.categoryName,
-  });
-
-  final String categoryName;
+  const FoodListScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final fooderProvider = Provider.of<FoodProvider>(context);
+    final categoryName = ModalRoute.of(context)?.settings.arguments as String?;
+    assert(categoryName != null, "Category name must be a non-null String");
+
+    final foodListProvider = Provider.of<FoodListProvider>(context);
     return Scaffold(
       appBar: _buildAppBar(
         context: context,
-        categoryName: categoryName,
+        categoryName: categoryName!,
       ),
       body: Padding(
         padding: const EdgeInsets.all(Paddings.kScreenAllPadding),
         child: ListView.builder(
-          itemCount: 10,
+          itemCount: foodListProvider.foodList.length,
           itemBuilder: (context, index) {
             return FoodCardTile(
-              fooder: fooderProvider.foodList[index],
+              food: foodListProvider.foodList[index],
+              onTapIncrementFood: () => foodListProvider.incrementFood(
+                foodListProvider.foodList[index],
+              ),
+              onTapDecrementFood: () => foodListProvider.incrementFood(
+                foodListProvider.foodList[index],
+              ),
+              totalFoodItem: foodListProvider.totalFoodItem(
+                foodListProvider.foodList[index],
+              ),
             );
           },
         ),

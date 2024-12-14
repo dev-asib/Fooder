@@ -10,6 +10,7 @@ class AlertMessage {
     final TextTheme textTheme = Theme.of(context).textTheme;
     Flushbar(
       messageText: Text(
+        textAlign: TextAlign.center,
         message,
         style: textTheme.bodyLarge?.copyWith(
           fontWeight: FontWeight.bold,

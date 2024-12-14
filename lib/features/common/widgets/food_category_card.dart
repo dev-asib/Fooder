@@ -15,21 +15,7 @@ class FoodCategoryCard extends StatelessWidget {
     final TextTheme textTheme = Theme.of(context).textTheme;
 
     return InkWell(
-      onTap: () {
-        if (category.categoryName != "More") {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => FoodListScreen(
-                categoryName: category.categoryName!,
-              ),
-            ),
-          );
-        } else {
-          Provider.of<MainBottomNavProvider>(context, listen: false)
-              .backToCategory();
-        }
-      },
+      onTap: () => _onTapCategory(context),
       child: Column(
         children: [
           Card(
@@ -54,5 +40,17 @@ class FoodCategoryCard extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  void _onTapCategory(BuildContext context) {
+    if (category.categoryName != "More") {
+      Navigator.of(context).pushNamed(
+        RouteNames.foodListScreen,
+        arguments: category.categoryName!,
+      );
+    } else {
+      Provider.of<MainBottomNavProvider>(context, listen: false)
+          .backToCategory();
+    }
   }
 }

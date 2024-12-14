@@ -1,16 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:fooder/core/exported_files/exported_files.dart';
-import 'package:provider/provider.dart';
 
 class LocationSelector extends StatelessWidget {
-  const LocationSelector({super.key});
+  const LocationSelector({
+    super.key,
+    required this.homeProvider,
+  });
+
+  final HomeProvider homeProvider;
 
   @override
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
-    final locationsProvider = Provider.of<LocationsProvider>(context);
 
-    if (locationsProvider.locationList.isEmpty) {
+    if (homeProvider.homeLocationList.isEmpty) {
       return const CenteredCircularProgressIndicator();
     }
 
@@ -24,12 +27,12 @@ class LocationSelector extends StatelessWidget {
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: DropdownButton<String>(
           iconEnabledColor: AppColors.kPrimaryColor,
-          value: locationsProvider.selectedLocation,
+          value: homeProvider.selectedLocation,
           hint: Text(
-            locationsProvider.selectedLocation!,
+            homeProvider.selectedLocation!,
             style: textTheme.titleSmall,
           ),
-          items: locationsProvider.locationList.map(
+          items: homeProvider.homeLocationList.map(
             (LocationModel loc) {
               return DropdownMenuItem(
                 value: loc.address,
@@ -40,7 +43,7 @@ class LocationSelector extends StatelessWidget {
               );
             },
           ).toList(),
-          onChanged: locationsProvider.onChangedLocation,
+          onChanged: homeProvider.onChangedHomeLocation,
           isExpanded: false,
         ),
       ),

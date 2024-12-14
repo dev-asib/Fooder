@@ -1,10 +1,14 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:fooder/core/exported_files/exported_files.dart';
 
 class CategoriesProvider extends ChangeNotifier {
+  final CategoryRepository _categoryRepository;
+
+  CategoriesProvider(this._categoryRepository);
+
   List<CategoryModel> _categoryList = [];
+
+  List<CategoryModel> get categories => _categoryList;
 
   List<CategoryModel> get categoryList {
     return _categoryList
@@ -12,20 +16,8 @@ class CategoriesProvider extends ChangeNotifier {
         .toList();
   }
 
-  List<CategoryModel> homeCategory() {
-    return _categoryList.isNotEmpty ? _categoryList.take(4).toList() : [];
-  }
-
-  Future<void> loadCategoryData() async {
-    try {
-      final String response =
-          await rootBundle.loadString(JsonsPaths.kCategoriesJson);
-      final List<dynamic> responseBody = json.decode(response);
-      _categoryList =
-          responseBody.map((json) => CategoryModel.fromJson(json)).toList();
-      notifyListeners();
-    } catch (e) {
-      debugPrint("Error loading json: $e");
-    }
+  Future<void> loadCategories() async {
+    _categoryList = await _categoryRepository.fetchCategories();
+    notifyListeners();
   }
 }

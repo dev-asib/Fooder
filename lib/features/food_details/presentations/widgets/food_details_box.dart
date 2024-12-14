@@ -4,11 +4,11 @@ import 'package:fooder/core/exported_files/exported_files.dart';
 class FoodDetailsBox extends StatelessWidget {
   const FoodDetailsBox({
     super.key,
-    required this.fooder,
+    required this.food,
     required this.locations,
   });
 
-  final FoodModel fooder;
+  final FoodModel food;
   final LocationModel locations;
 
   @override
@@ -39,7 +39,7 @@ class FoodDetailsBox extends StatelessWidget {
               ),
               _buildFoodInfoRow(
                 locations,
-                fooder,
+                food,
               ),
             ],
           ),
@@ -50,7 +50,7 @@ class FoodDetailsBox extends StatelessWidget {
 
   Widget _buildFoodInfoRow(
     LocationModel locations,
-    FoodModel fooder,
+    FoodModel food,
   ) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -60,7 +60,7 @@ class FoodDetailsBox extends StatelessWidget {
           icon: Icons.my_location_sharp,
         ),
         HorizontalIconIconWithText(
-          title: fooder.reviewList![0].rating.toString(),
+          title: food.reviewList![0].rating.toString(),
           icon: Icons.star,
         ),
         const HorizontalIconIconWithText(
@@ -75,7 +75,7 @@ class FoodDetailsBox extends StatelessWidget {
     return Text(
       overflow: TextOverflow.ellipsis,
       maxLines: 1,
-      fooder.foodTitle!,
+      food.foodTitle!,
       style: textTheme.titleMedium,
     );
   }

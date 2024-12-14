@@ -13,14 +13,7 @@ class WishFood extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return InkWell(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => FoodDetailsScreen(fooder: food),
-          ),
-        );
-      },
+      onTap: () => _onTapWishFood(context),
       child: Card(
         elevation: 3,
         child: Padding(
@@ -66,6 +59,13 @@ class WishFood extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+
+  void _onTapWishFood(BuildContext context) {
+    Navigator.of(context).pushNamed(
+      RouteNames.foodDetailsScreen,
+      arguments: food,
     );
   }
 }

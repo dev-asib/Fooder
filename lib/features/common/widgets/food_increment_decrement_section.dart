@@ -5,9 +5,13 @@ class FoodIncrementDecrementSection extends StatelessWidget {
   const FoodIncrementDecrementSection({
     super.key,
     required this.totalFoodCount,
+    required this.onTapIncrementFood,
+    required this.onTapDecrementFood,
   });
 
   final int totalFoodCount;
+  final VoidCallback onTapIncrementFood;
+  final VoidCallback onTapDecrementFood;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +22,7 @@ class FoodIncrementDecrementSection extends StatelessWidget {
           children: [
             IncrementDecrementButton(
               icon: Icons.remove,
-              onPressed: () {},
+              onPressed: onTapDecrementFood,
               bgColor: AppColors.kLightGreyColor,
             ),
             Container(
@@ -30,7 +34,7 @@ class FoodIncrementDecrementSection extends StatelessWidget {
             ),
             IncrementDecrementButton(
               icon: Icons.add,
-              onPressed: () {},
+              onPressed: onTapIncrementFood,
             ),
           ],
         ),

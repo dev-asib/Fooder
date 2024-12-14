@@ -19,13 +19,13 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      Provider.of<CartProvider>(context, listen: false).updateTotalCartPrice();
+      Provider.of<CheckoutProvider>(context, listen: false)
+          .loadUpdateTotalCheckoutListPrice();
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    final cartProvider = Provider.of<CartProvider>(context);
     final checkoutProvider = Provider.of<CheckoutProvider>(context);
 
     return Scaffold(
@@ -42,40 +42,54 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                     _buildDeliveryLocationSection(checkoutProvider),
                     _buildMyBucketSection(
                       context: context,
-                      cartProvider: cartProvider,
+                      checkoutProvider: checkoutProvider,
                     ),
                   ],
                 ),
               ),
             ),
           ),
-          _buildOrderButton(cartProvider, context),
+          _buildOrderButton(
+            context: context,
+            checkoutProvider: checkoutProvider,
+          ),
         ],
       ),
     );
   }
 
-  Widget _buildOrderButton(CartProvider cartProvider, BuildContext context) {
+  Widget _buildOrderButton({
+    required CheckoutProvider checkoutProvider,
+    required BuildContext context,
+  }) {
     return OrderButton(
       buttonTitle: CheckoutStrings.kPlaceOrderTxt,
-      totalItems: cartProvider.cartList.length,
-      totalPrice: cartProvider.totalCartPrice,
-      onPressed: () {
-        if (cartProvider.cartList.isEmpty) {
-          AlertMessage.showFlushBarMessage(
-            context: context,
-            message: "Cart is Empty! Please add item.",
-          );
-        } else {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const OrderScreen(),
-            ),
-          );
-        }
-      },
+      totalItems: checkoutProvider.checkoutFoodList.length,
+      totalPrice: checkoutProvider.checkoutTotalPrice,
+      onPressed: () => _onTapOrderButton(
+        context: context,
+        checkoutProvider: checkoutProvider,
+      ),
     );
+  }
+
+  void _onTapOrderButton({
+    required BuildContext context,
+    required CheckoutProvider checkoutProvider,
+  }) {
+    if (checkoutProvider.checkoutFoodList.isEmpty) {
+      AlertMessage.showFlushBarMessage(
+        context: context,
+        message: "Cart is Empty! Please add item.",
+      );
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const OrderScreen(),
+        ),
+      );
+    }
   }
 
   Widget _buildDeliveryLocationSection(CheckoutProvider checkoutProvider) {
@@ -96,7 +110,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
 
   Widget _buildMyBucketSection({
     required BuildContext context,
-    required CartProvider cartProvider,
+    required CheckoutProvider checkoutProvider,
   }) {
     return Card(
       child: SizedBox(
@@ -108,9 +122,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
             children: [
               _myBucketHeader(context),
               const Gap(8),
-              if (cartProvider.cartList.isEmpty) const Spacer(),
-              _buildCartItemList(cartProvider),
-              if (cartProvider.cartList.isEmpty) const Spacer(),
+              if (checkoutProvider.checkoutFoodList.isEmpty) const Spacer(),
+              _buildCartItemList(checkoutProvider),
+              if (checkoutProvider.checkoutFoodList.isEmpty) const Spacer(),
             ],
           ),
         ),
@@ -118,18 +132,24 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     );
   }
 
-  Widget _buildCartItemList(CartProvider cartProvider) {
+  Widget _buildCartItemList(CheckoutProvider checkoutProvider) {
     return Visibility(
-      visible: cartProvider.cartList.isNotEmpty,
+      visible: checkoutProvider.checkoutFoodList.isNotEmpty,
       replacement: const EmptyFoodWidget(
         emptyFoodMessage: CheckoutStrings.kEmptyCheckoutFoodMessage,
       ),
       child: Expanded(
         child: ListView.builder(
-          itemCount: cartProvider.cartList.length,
+          itemCount: checkoutProvider.checkoutFoodList.length,
           itemBuilder: (context, index) {
             return FoodCardTile(
-              fooder: cartProvider.cartList[index],
+              food: checkoutProvider.checkoutFoodList[index],
+              onTapIncrementFood: () => checkoutProvider
+                  .incrementFood(checkoutProvider.checkoutFoodList[index]),
+              onTapDecrementFood: () => checkoutProvider
+                  .decrementFood(checkoutProvider.checkoutFoodList[index]),
+              totalFoodItem: checkoutProvider
+                  .totalFoodItem(checkoutProvider.checkoutFoodList[index]),
             );
           },
         ),
@@ -141,28 +161,28 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     return TextWithButtonRow(
       contentTitle: CheckoutStrings.kMyBucketTxt,
       button: TextButton.icon(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const FoodListScreen(
-                categoryName: CheckoutStrings.kFoodListAppBarTitle,
-              ),
-            ),
-          ).then(
-            (result) {
-              if (result == true) {
-                if (context.mounted) {
-                  Provider.of<CartProvider>(context, listen: false)
-                      .updateTotalCartPrice();
-                }
-              }
-            },
-          );
-        },
+        onPressed: _onTapAddItemsButton,
         label: const Text(CheckoutStrings.kAddItemsTxt),
         icon: const Icon(Icons.add),
       ),
+    );
+  }
+
+  void _onTapAddItemsButton() {
+    Navigator.of(context)
+        .pushNamed(
+      RouteNames.foodListScreen,
+      arguments: CheckoutStrings.kFoodListAppBarTitle,
+    )
+        .then(
+      (result) {
+        if (result == true) {
+          if (mounted) {
+            Provider.of<CartListProvider>(context, listen: false)
+                .updateTotalCartListPrice();
+          }
+        }
+      },
     );
   }
 

@@ -7,19 +7,27 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cartProvider = Provider.of<CartProvider>(context);
+    final cartProvider = Provider.of<CartListProvider>(context);
     return Scaffold(
       appBar: _buildCartAppBar(context),
       body: Visibility(
-        visible: cartProvider.cartList.isNotEmpty,
+        visible: cartProvider.cartFoodList.isNotEmpty,
         replacement: const EmptyFoodWidget(
           emptyFoodMessage: CartStrings.kEmptyCartMessage,
         ),
         child: ListView.builder(
-          itemCount: cartProvider.cartList.length,
+          itemCount: cartProvider.cartFoodList.length,
           itemBuilder: (context, index) {
             return FoodCardTile(
-              fooder: cartProvider.cartList[index],
+              food: cartProvider.cartFoodList[index],
+              onTapIncrementFood: () =>
+                  cartProvider.incrementFood(cartProvider.cartFoodList[index]),
+              onTapDecrementFood: () => cartProvider.incrementFood(
+                cartProvider.cartFoodList[index],
+              ),
+              totalFoodItem: cartProvider.totalFoodItem(
+                cartProvider.cartFoodList[index],
+              ),
             );
           },
         ),
@@ -43,15 +51,12 @@ class CartScreen extends StatelessWidget {
         height: 40,
         width: 40,
         svgAsset: IconsPaths.kCheckoutSvg,
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const CheckoutScreen(),
-            ),
-          );
-        },
+        onTap: () => _onTapCheckoutButton(context),
       ),
     );
+  }
+
+  void _onTapCheckoutButton(BuildContext context) {
+    Navigator.of(context).pushNamed(RouteNames.checkoutScreen);
   }
 }
