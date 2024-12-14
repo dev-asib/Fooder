@@ -22,7 +22,7 @@ class CartScreen extends StatelessWidget {
               food: cartProvider.cartFoodList[index],
               onTapIncrementFood: () =>
                   cartProvider.incrementFood(cartProvider.cartFoodList[index]),
-              onTapDecrementFood: () => cartProvider.incrementFood(
+              onTapDecrementFood: () => cartProvider.decrementFood(
                 cartProvider.cartFoodList[index],
               ),
               totalFoodItem: cartProvider.totalFoodItem(

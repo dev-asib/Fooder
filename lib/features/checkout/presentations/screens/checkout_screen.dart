@@ -29,6 +29,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     final checkoutProvider = Provider.of<CheckoutProvider>(context);
 
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: _buildAppBar(),
       body: Column(
         children: [
@@ -123,7 +124,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
               _myBucketHeader(context),
               const Gap(8),
               if (checkoutProvider.checkoutFoodList.isEmpty) const Spacer(),
-              _buildCartItemList(checkoutProvider),
+              _buildCheckoutBucketItemList(checkoutProvider),
               if (checkoutProvider.checkoutFoodList.isEmpty) const Spacer(),
             ],
           ),
@@ -132,7 +133,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     );
   }
 
-  Widget _buildCartItemList(CheckoutProvider checkoutProvider) {
+  Widget _buildCheckoutBucketItemList(CheckoutProvider checkoutProvider) {
     return Visibility(
       visible: checkoutProvider.checkoutFoodList.isNotEmpty,
       replacement: const EmptyFoodWidget(
