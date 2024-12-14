@@ -27,4 +27,8 @@ class HomeProvider extends ChangeNotifier {
   void onChangedHomeLocation(String? newLocation) {
     _locationsProvider.onChangedLocation(newLocation);
   }
+
+  double totalSubFoodPrice(FoodModel food){
+    return _promoFoodProvider.totalSubFoodPrice(food);
+  }
 }

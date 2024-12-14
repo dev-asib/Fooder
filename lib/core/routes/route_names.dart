@@ -1,4 +1,5 @@
 class RouteNames {
+  static const String splashScreen = "/";
   static const String mainBottomNavScreen = "/main_bottom_nav_screen";
   static const String homeScreen = "/home_screen";
   static const String categoryScreen = "/category_screen";

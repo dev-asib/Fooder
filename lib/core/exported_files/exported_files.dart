@@ -11,11 +11,22 @@ export 'package:fooder/core/constants/assets_paths/images_paths.dart';
 export 'package:fooder/core/constants/assets_paths/jsons_paths.dart';
 export 'package:fooder/core/constants/assets_paths/lotties_paths.dart';
 export 'package:fooder/core/constants/paddings/paddings.dart';
+export 'package:fooder/core/constants/strings/app_strings.dart';
 export 'package:fooder/core/data/models/food_model.dart';
 export 'package:fooder/core/data/repositories/food_repository.dart';
 export 'package:fooder/core/routes/app_routes.dart';
 export 'package:fooder/core/routes/route_names.dart';
 export 'package:fooder/core/theme/app_colors/app_colors.dart';
+export 'package:fooder/core/theme/app_themes/app_theme.dart';
+export 'package:fooder/core/theme/app_themes/themes/app_bar_themes.dart';
+export 'package:fooder/core/theme/app_themes/themes/chip_themes.dart';
+export 'package:fooder/core/theme/app_themes/themes/elevated_button_themes.dart';
+export 'package:fooder/core/theme/app_themes/themes/icon_button_themes.dart';
+export 'package:fooder/core/theme/app_themes/themes/input_decoration_themes.dart';
+export 'package:fooder/core/theme/app_themes/themes/switch_themes.dart';
+export 'package:fooder/core/theme/app_themes/themes/tab_bar_themes.dart';
+export 'package:fooder/core/theme/app_themes/themes/text_button_themes.dart';
+export 'package:fooder/core/theme/app_themes/themes/text_themes.dart';
 export 'package:fooder/core/utils/logger.dart';
 export 'package:fooder/core/widgets/centered_circular_progress_indicator.dart';
 export 'package:fooder/core/widgets/custom_app_bar.dart';
@@ -50,6 +61,11 @@ export 'package:fooder/features/common/widgets/food_increment_decrement_section.
 export 'package:fooder/features/common/widgets/order_button.dart';
 export 'package:fooder/features/common/widgets/stock_badge.dart';
 export 'package:fooder/features/common/widgets/wish_icon.dart';
+
+// fooder/features/splash/
+export 'package:fooder/features/splash/presentations/screens/splash_screen.dart';
+export 'package:fooder/features/splash/utilities/constants/splash_strings.dart';
+export 'package:fooder/features/splash/providers/splash_provider.dart';
 
 // fooder/features/cart/
 export 'package:fooder/features/cart_list/presentation/screens/cart_list_screen.dart';

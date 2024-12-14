@@ -11,7 +11,7 @@ class FoodDetailsProvider extends ChangeNotifier {
   );
 
   int totalFoodItem (FoodModel food){
-    return _foodProvider.foodCount[food]?.toInt() ?? 0;
+    return _foodProvider.foodCount[food]?.toInt() ?? 1;
   }
 
   void incrementFood(FoodModel food) {

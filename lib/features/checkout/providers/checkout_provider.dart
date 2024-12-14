@@ -44,4 +44,12 @@ class CheckoutProvider extends ChangeNotifier {
   double totalSubFoodPrice(FoodModel food) {
     return _foodProvider.totalSubFoodPrice(food);
   }
+
+  double totalCheckoutFoodPrice() {
+    double totalPrice = 0;
+    for (FoodModel food in checkoutFoodList) {
+      totalPrice += totalSubFoodPrice(food);
+    }
+    return totalPrice;
+  }
 }

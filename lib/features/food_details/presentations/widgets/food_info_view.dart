@@ -8,13 +8,14 @@ class FoodInfoView extends StatelessWidget {
     required this.food,
     required this.onTapIncrementFood,
     required this.onTapDecrementFood,
-    required this.totalFoodCount,
+    required this.totalFoodCount, required this.totalSubFoodPrice,
   });
 
   final FoodModel food;
   final VoidCallback onTapIncrementFood;
   final VoidCallback onTapDecrementFood;
   final int totalFoodCount;
+  final double totalSubFoodPrice;
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +36,8 @@ class FoodInfoView extends StatelessWidget {
               children: [
                 Chip(
                   label: DualRichText(
-                    primaryText: "TK ${food.discountPrice!}",
+                    //primaryText: "TK ${food.discountPrice!}",
+                    primaryText: "TK $totalSubFoodPrice",
                     secondaryText: "${food.originalPrice!}",
                   ),
                 ),

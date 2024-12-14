@@ -7,4 +7,8 @@ class PromoFoodProvider extends ChangeNotifier {
   PromoFoodProvider(this._foodProvider);
 
   List<FoodModel> get promoFoodList => _foodProvider.foodList;
+
+  double totalSubFoodPrice(FoodModel food){
+    return _foodProvider.totalSubFoodPrice(food);
+  }
 }

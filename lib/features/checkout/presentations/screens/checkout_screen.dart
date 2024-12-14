@@ -65,7 +65,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     return OrderButton(
       buttonTitle: CheckoutStrings.kPlaceOrderTxt,
       totalItems: checkoutProvider.checkoutFoodList.length,
-      totalPrice: checkoutProvider.checkoutTotalPrice,
+      totalPrice: checkoutProvider.totalCheckoutFoodPrice(),
       onPressed: () => _onTapOrderButton(
         context: context,
         checkoutProvider: checkoutProvider,
@@ -150,6 +150,8 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   .decrementFood(checkoutProvider.checkoutFoodList[index]),
               totalFoodItem: checkoutProvider
                   .totalFoodItem(checkoutProvider.checkoutFoodList[index]),
+              totalSubFoodPrice: checkoutProvider
+                  .totalSubFoodPrice(checkoutProvider.checkoutFoodList[index]),
             );
           },
         ),

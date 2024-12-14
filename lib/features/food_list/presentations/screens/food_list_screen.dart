@@ -26,12 +26,14 @@ class FoodListScreen extends StatelessWidget {
               onTapIncrementFood: () => foodListProvider.incrementFood(
                 foodListProvider.foodList[index],
               ),
-              onTapDecrementFood: () => foodListProvider.incrementFood(
+              onTapDecrementFood: () => foodListProvider.decrementFood(
                 foodListProvider.foodList[index],
               ),
               totalFoodItem: foodListProvider.totalFoodItem(
                 foodListProvider.foodList[index],
               ),
+              totalSubFoodPrice: foodListProvider
+                  .totalSubFoodPrice(foodListProvider.foodList[index]),
             );
           },
         ),

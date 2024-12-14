@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 class AppRoutes {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
+      case RouteNames.splashScreen:
+        return _buildRoute(const SplashScreen(), settings);
       case RouteNames.mainBottomNavScreen:
         return _buildRoute(const MainBottomNavScreen(), settings);
       case RouteNames.homeScreen:

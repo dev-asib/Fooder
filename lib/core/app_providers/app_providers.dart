@@ -5,8 +5,8 @@ import 'package:provider/single_child_widget.dart';
 class AppProviders {
   static List<SingleChildWidget> appProviders() {
     return [
+      ChangeNotifierProvider(create: (_) => SplashProvider()),
       ChangeNotifierProvider(create: (_) => MainBottomNavProvider()),
-      ChangeNotifierProvider(create: (_) => WishListProvider()),
 
       /// Providing LocationRepository to LocationProvider
       ChangeNotifierProvider(
@@ -38,6 +38,15 @@ class AppProviders {
         ),
         update: (_, foodProvider, cartListProvider) =>
             CartListProvider(foodProvider),
+      ),
+
+      /// Providing FoodProvider to WishListProvider
+      ChangeNotifierProxyProvider<FoodProvider, WishListProvider>(
+        create: (_) => WishListProvider(
+          Provider.of<FoodProvider>(_, listen: false),
+        ),
+        update: (_, foodProvider, wishListProvider) =>
+            WishListProvider(foodProvider),
       ),
 
       /// Providing CartListProvider & FoodProvider to FoodDetailsProvider

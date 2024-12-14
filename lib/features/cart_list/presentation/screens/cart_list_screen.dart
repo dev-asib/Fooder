@@ -28,6 +28,8 @@ class CartScreen extends StatelessWidget {
               totalFoodItem: cartProvider.totalFoodItem(
                 cartProvider.cartFoodList[index],
               ),
+              totalSubFoodPrice: cartProvider
+                  .totalSubFoodPrice(cartProvider.cartFoodList[index]),
             );
           },
         ),

@@ -22,7 +22,7 @@ class FoodProvider extends ChangeNotifier {
 
   void decrementFood(FoodModel food) {
     if (_foodList.any((foodItem) => foodItem.id == food.id)) {
-      if (_foodCount[food] != null && _foodCount[food]! > 0) {
+      if (_foodCount[food] != null && _foodCount[food]! > 1) {
         _foodCount[food] = _foodCount[food]! - 1;
         notifyListeners();
       }
@@ -30,7 +30,7 @@ class FoodProvider extends ChangeNotifier {
   }
 
   double totalSubFoodPrice(FoodModel food) {
-    int count = _foodCount[food] ?? 0;
+    int count = _foodCount[food] ?? 1;
     return food.discountPrice! * count;
   }
 
