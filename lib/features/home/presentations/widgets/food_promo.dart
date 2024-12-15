@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fooder/core/exported_files/exported_files.dart';
-import 'package:provider/provider.dart';
 
 class FoodPromo extends StatelessWidget {
   const FoodPromo({
@@ -12,8 +11,6 @@ class FoodPromo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final HomeProvider homeProvider =
-        Provider.of<HomeProvider>(context);
     final TextTheme textTheme = Theme.of(context).textTheme;
     return InkWell(
       onTap: () => _onTapFoodPromo(context),
@@ -35,10 +32,7 @@ class FoodPromo extends StatelessWidget {
                 left: 8,
                 right: 8,
                 child: Card(
-                  child: _buildPromoFoodInfoCard(
-                    textTheme: textTheme,
-                    homeProvider: homeProvider,
-                  ),
+                  child: _buildPromoFoodInfoCard(textTheme: textTheme),
                 ),
               ),
             ],
@@ -48,10 +42,7 @@ class FoodPromo extends StatelessWidget {
     );
   }
 
-  Widget _buildPromoFoodInfoCard({
-    required TextTheme textTheme,
-    required HomeProvider homeProvider,
-  }) {
+  Widget _buildPromoFoodInfoCard({required TextTheme textTheme}) {
     return Container(
       height: 110,
       padding: const EdgeInsets.all(8),
@@ -73,7 +64,7 @@ class FoodPromo extends StatelessWidget {
           Row(
             children: [
               DualRichText(
-                primaryText: "TK ${homeProvider.totalSubFoodPrice(food)}\t\t",
+                primaryText: "TK ${food.discountPrice ?? 0}\t\t",
                 secondaryText: "${food.originalPrice ?? 0}",
               ),
               const Spacer(),

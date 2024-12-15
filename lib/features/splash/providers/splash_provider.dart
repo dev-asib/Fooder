@@ -7,7 +7,7 @@ class SplashProvider extends ChangeNotifier {
       const Duration(seconds: 3),
       () {
         if (context.mounted) {
-          Navigator.pushNamed(
+          Navigator.pushReplacementNamed(
             context,
             RouteNames.mainBottomNavScreen,
           );

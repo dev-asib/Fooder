@@ -123,7 +123,6 @@ class FoodDetailsScreen extends StatelessWidget {
           onTapIncrementFood: () => foodDetailsProvider.incrementFood(food),
           onTapDecrementFood: () => foodDetailsProvider.decrementFood(food),
           totalFoodCount: foodDetailsProvider.totalFoodItem(food), 
-          totalSubFoodPrice: foodDetailsProvider.totalSubFoodPrice(food),
         ),
       ],
     );

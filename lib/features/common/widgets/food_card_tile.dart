@@ -10,14 +10,12 @@ class FoodCardTile extends StatelessWidget {
     required this.onTapIncrementFood,
     required this.onTapDecrementFood,
     required this.totalFoodItem,
-    required this.totalSubFoodPrice,
   });
 
   final FoodModel food;
   final VoidCallback onTapIncrementFood;
   final VoidCallback onTapDecrementFood;
   final int totalFoodItem;
-  final double totalSubFoodPrice;
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +108,7 @@ class FoodCardTile extends StatelessWidget {
             style: textTheme.bodyLarge,
           ),
           DualRichText(
-            primaryText: "TK $totalSubFoodPrice\t\t",
+            primaryText: "TK ${food.discountPrice ?? 0}\t\t",
             secondaryText: "${food.originalPrice ?? 0}",
           ),
           const HorizontalIconIconWithText(

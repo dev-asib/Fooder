@@ -40,7 +40,9 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                 child: Column(
                   children: [
                     _buildOrderConfirmationSwitchSection(checkoutProvider),
+                    const Gap(8),
                     _buildDeliveryLocationSection(checkoutProvider),
+                    const Gap(8),
                     _buildMyBucketSection(
                       context: context,
                       checkoutProvider: checkoutProvider,
@@ -114,6 +116,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
     required CheckoutProvider checkoutProvider,
   }) {
     return Card(
+      color: AppColors.kWhiteColor,
       child: SizedBox(
         width: double.maxFinite,
         height: 400,
@@ -151,8 +154,6 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
                   .decrementFood(checkoutProvider.checkoutFoodList[index]),
               totalFoodItem: checkoutProvider
                   .totalFoodItem(checkoutProvider.checkoutFoodList[index]),
-              totalSubFoodPrice: checkoutProvider
-                  .totalSubFoodPrice(checkoutProvider.checkoutFoodList[index]),
             );
           },
         ),
@@ -192,6 +193,7 @@ class _CheckoutScreenState extends State<CheckoutScreen> {
   Widget _buildOrderConfirmationSwitchSection(
       CheckoutProvider checkoutProvider) {
     return Card(
+      color: AppColors.kWhiteColor,
       child: ListTile(
         title: const Text(CheckoutStrings.kOrderDoorStepTitle),
         subtitle: const Text(CheckoutStrings.kOrderDoorStepSubTitle),

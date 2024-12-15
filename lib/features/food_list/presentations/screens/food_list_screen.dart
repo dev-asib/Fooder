@@ -32,8 +32,6 @@ class FoodListScreen extends StatelessWidget {
               totalFoodItem: foodListProvider.totalFoodItem(
                 foodListProvider.foodList[index],
               ),
-              totalSubFoodPrice: foodListProvider
-                  .totalSubFoodPrice(foodListProvider.foodList[index]),
             );
           },
         ),

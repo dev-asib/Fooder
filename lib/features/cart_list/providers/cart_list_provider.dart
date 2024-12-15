@@ -48,9 +48,8 @@ class CartListProvider extends ChangeNotifier {
     return _cartFoodList.any((item) => item.id == food.id);
   }
 
-
   int totalFoodItem(FoodModel food) {
-    return _foodProvider.foodCount[food]?.toInt() ?? 0;
+    return _foodProvider.foodCount[food]?.toInt() ?? 1;
   }
 
   void incrementFood(FoodModel food) {
@@ -64,5 +63,4 @@ class CartListProvider extends ChangeNotifier {
   double totalSubFoodPrice(FoodModel food) {
     return _foodProvider.totalSubFoodPrice(food);
   }
-
 }

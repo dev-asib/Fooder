@@ -7,29 +7,34 @@ class CartScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final cartProvider = Provider.of<CartListProvider>(context);
+    final cartListProvider = Provider.of<CartListProvider>(context);
     return Scaffold(
       appBar: _buildCartAppBar(context),
       body: Visibility(
-        visible: cartProvider.cartFoodList.isNotEmpty,
+        visible: cartListProvider.cartFoodList.isNotEmpty,
         replacement: const EmptyFoodWidget(
           emptyFoodMessage: CartStrings.kEmptyCartMessage,
         ),
         child: ListView.builder(
-          itemCount: cartProvider.cartFoodList.length,
+          itemCount: cartListProvider.cartFoodList.length,
           itemBuilder: (context, index) {
             return FoodCardTile(
-              food: cartProvider.cartFoodList[index],
-              onTapIncrementFood: () =>
-                  cartProvider.incrementFood(cartProvider.cartFoodList[index]),
-              onTapDecrementFood: () => cartProvider.decrementFood(
-                cartProvider.cartFoodList[index],
+              food: cartListProvider.cartFoodList[index],
+              onTapIncrementFood: () {
+                cartListProvider
+                    .incrementFood(cartListProvider.cartFoodList[index],);
+                cartListProvider.updateTotalCartListPrice();
+              },
+              onTapDecrementFood: (){
+                cartListProvider.decrementFood(
+                  cartListProvider.cartFoodList[index],
+                );
+                cartListProvider.updateTotalCartListPrice();
+
+              },
+              totalFoodItem: cartListProvider.totalFoodItem(
+                cartListProvider.cartFoodList[index],
               ),
-              totalFoodItem: cartProvider.totalFoodItem(
-                cartProvider.cartFoodList[index],
-              ),
-              totalSubFoodPrice: cartProvider
-                  .totalSubFoodPrice(cartProvider.cartFoodList[index]),
             );
           },
         ),

@@ -10,7 +10,7 @@ class FoodDetailsProvider extends ChangeNotifier {
     this._foodProvider,
   );
 
-  int totalFoodItem (FoodModel food){
+  int totalFoodItem(FoodModel food) {
     return _foodProvider.foodCount[food]?.toInt() ?? 1;
   }
 

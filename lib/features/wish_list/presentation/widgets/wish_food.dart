@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:fooder/core/exported_files/exported_files.dart';
-import 'package:provider/provider.dart';
 
 class WishFood extends StatelessWidget {
   const WishFood({
@@ -12,61 +11,56 @@ class WishFood extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final WishListProvider wishListProvider =
-        Provider.of<WishListProvider>(context);
     final TextTheme textTheme = Theme.of(context).textTheme;
     return InkWell(
       onTap: () => _onTapWishFood(context),
       child: Card(
         elevation: 3,
-        child: Stack(
-          alignment: Alignment.topRight,
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+        color: AppColors.kWhiteColor,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Food(imgPath: food.imgPath!),
+              Text(
+                food.foodTitle!,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: textTheme.bodyLarge,
+              ),
+              Text(
+                food.foodDetails!,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: textTheme.bodyMedium,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Food(imgPath: food.imgPath!),
                   Text(
-                    food.foodTitle!,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: textTheme.bodyLarge,
+                    "TK ${food.discountPrice ?? 0}",
+                    style: textTheme.bodyLarge?.copyWith(
+                      fontSize: 15,
+                    ),
                   ),
-                  Text(
-                    food.foodDetails!,
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
-                    style: textTheme.bodyMedium,
+                  HorizontalIconIconWithText(
+                    title: "${food.reviewList![0].rating}",
+                    icon: Icons.star,
+                    middleGap: 1,
+                    iconSize: 18,
+                    fontSize: 15,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "TK ${wishListProvider.totalSubFoodPrice(food)}",
-                        style: textTheme.bodyLarge,
-                      ),
-                      HorizontalIconIconWithText(
-                        title: "${food.reviewList![0].rating}",
-                        icon: Icons.star,
-                        middleGap: 1,
-                      ),
-                    ],
+                  WishIcon(
+                    food: food,
+                    height: 28,
+                    width: 28,
                   ),
                 ],
               ),
-            ),
-            Positioned(
-              top: 8,
-              right: 8,
-              child: SizedBox(
-                height: 30,
-                width: 30,
-                child: WishIcon(food: food),
-              ),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );

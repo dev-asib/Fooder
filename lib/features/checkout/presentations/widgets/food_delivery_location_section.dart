@@ -16,6 +16,7 @@ class FoodDeliveryLocationSection extends StatelessWidget {
   Widget build(BuildContext context) {
     final TextTheme textTheme = Theme.of(context).textTheme;
     return Card(
+      color: AppColors.kWhiteColor,
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Column(
