@@ -11,21 +11,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      _initializeProviders(context);
-    });
-  }
-
-  Future<void> _initializeProviders(BuildContext context) async {
-    await Future.wait([
-      Provider.of<FoodProvider>(context, listen: false).loadFood(),
-      Provider.of<LocationsProvider>(context, listen: false).loadLocations(),
-      Provider.of<CategoriesProvider>(context, listen: false).loadCategories(),
-    ]);
-  }
 
   @override
   Widget build(BuildContext context) {

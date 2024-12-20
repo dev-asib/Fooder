@@ -1,7 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:fooder/core/exported_files/exported_files.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class CheckoutProvider extends ChangeNotifier {
+  static const String checkoutListKey = "checkout_list";
+
   final CartListProvider _cartProvider;
   final FoodProvider _foodProvider;
 
@@ -17,6 +22,28 @@ class CheckoutProvider extends ChangeNotifier {
   List<FoodModel> get checkoutFoodList => _cartProvider.cartFoodList;
 
   double get checkoutTotalPrice => _cartProvider.totalCartPrice;
+
+
+  Future<void> saveCheckoutList() async {
+    final SharedPreferences sp = await SharedPreferences.getInstance();
+    final String encodedCheckoutFoodList =
+    jsonEncode(checkoutFoodList.map((food) => food.toJson()).toList());
+    await sp.setString(checkoutListKey, encodedCheckoutFoodList);
+  }
+
+  Future<void> loadCheckoutList() async {
+    final SharedPreferences sp = await SharedPreferences.getInstance();
+    final String? checkoutFoodListData = sp.getString(checkoutListKey);
+    if (checkoutFoodListData != null) {
+      List<Map<String, dynamic>> decodedCheckoutFoodList =
+      List<Map<String, dynamic>>.from(jsonDecode(checkoutFoodListData));
+      checkoutFoodList.clear();
+      checkoutFoodList
+          .addAll(decodedCheckoutFoodList.map((food) => FoodModel.fromJson(food)));
+      notifyListeners();
+    }
+  }
+
 
   void onChangedOrderConfirmation(bool value) {
     _isOrderCancelled = value;

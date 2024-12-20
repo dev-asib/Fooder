@@ -134,8 +134,8 @@ class FoodCardTile extends StatelessWidget {
           food: food,
         );
       },
-      icon: Icon(cartProvider.isAddedFood(food) ? Icons.check : Icons.add),
-      label: Text(cartProvider.isAddedFood(food) ? "Added." : "Add"),
+      icon: Icon(cartProvider.isAddedFoodToCartList(food) ? Icons.check : Icons.add),
+      label: Text(cartProvider.isAddedFoodToCartList(food) ? "Added." : "Add"),
     );
   }
 

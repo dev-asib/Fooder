@@ -16,13 +16,15 @@ dependencies:
   gap: ^3.0.1
   provider: ^6.1.2
   flutter_svg: ^2.0.16
+  another_flushbar: ^1.12.30
+  lottie: ^3.2.0
+  shared_preferences: ^2.3.4
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
   device_preview: ^1.2.0
-  another_flushbar: ^1.12.30
-  lottie: ^3.2.0
+
 
   flutter_lints: ^4.0.0
 
